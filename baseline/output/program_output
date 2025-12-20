@@ -1,0 +1,710 @@
+使用设备: cuda
+当前工作目录: /opt/data/private/ReTaMTSF/baseline
+检查文件路径: ../dataset/Time-MMD/numerical/Energy/Energy.parquet
+文件是否存在: True
+
+================================================================================
+处理数据集: Energy
+================================================================================
+
+==================================================
+开始在数据集 Energy_lb36_h12 上训练...
+回看窗口: 36, 预测窗口: 12
+==================================================
+数据形状: (1575, 48, 9)
+数据集划分 - 训练集: 1102, 验证集: 157, 测试集: 316
+Error importing huggingface_hub.hf_api: No module named 'requests'
+
+开始训练...
+Epoch 1/100 - Train Loss: 0.043569, Val Loss: 0.092326
+Epoch 2/100 - Train Loss: 0.060604, Val Loss: 0.194017
+Epoch 3/100 - Train Loss: 0.108657, Val Loss: 0.071285
+Epoch 4/100 - Train Loss: 0.097262, Val Loss: 0.116534
+Epoch 5/100 - Train Loss: 0.100768, Val Loss: 0.085965
+Epoch 6/100 - Train Loss: 0.088920, Val Loss: 0.088440
+Epoch 7/100 - Train Loss: 0.119582, Val Loss: 0.166761
+Epoch 8/100 - Train Loss: 0.147743, Val Loss: 0.130550
+Epoch 9/100 - Train Loss: 0.139019, Val Loss: 0.118960
+Epoch 10/100 - Train Loss: 0.125356, Val Loss: 0.108137
+Epoch 11/100 - Train Loss: 0.124716, Val Loss: 0.139105
+Epoch 12/100 - Train Loss: 0.147758, Val Loss: 0.256191
+Epoch 13/100 - Train Loss: 0.185127, Val Loss: 0.154197
+
+Early stopping at epoch 13
+
+训练完成！用时: 454.58秒
+最佳验证损失: 0.071285
+
+开始测试...
+测试损失: 0.904085
+
+==================================================
+开始在数据集 Energy_lb36_h24 上训练...
+回看窗口: 36, 预测窗口: 24
+==================================================
+数据形状: (1563, 60, 9)
+数据集划分 - 训练集: 1094, 验证集: 156, 测试集: 313
+
+开始训练...
+Epoch 1/100 - Train Loss: 0.057106, Val Loss: 0.071518
+Epoch 2/100 - Train Loss: 0.057039, Val Loss: 0.066558
+Epoch 3/100 - Train Loss: 0.056118, Val Loss: 0.093001
+Epoch 4/100 - Train Loss: 0.084018, Val Loss: 0.075352
+Epoch 5/100 - Train Loss: 0.078242, Val Loss: 0.107900
+Epoch 6/100 - Train Loss: 0.098368, Val Loss: 0.347196
+Epoch 7/100 - Train Loss: 0.233499, Val Loss: 0.360093
+Epoch 8/100 - Train Loss: 0.179069, Val Loss: 0.526552
+Epoch 9/100 - Train Loss: 0.196380, Val Loss: 0.376154
+Epoch 10/100 - Train Loss: 0.338748, Val Loss: 0.475719
+Epoch 11/100 - Train Loss: 0.623994, Val Loss: 0.332063
+Epoch 12/100 - Train Loss: 0.634009, Val Loss: 0.239096
+
+Early stopping at epoch 12
+
+训练完成！用时: 418.55秒
+最佳验证损失: 0.066558
+
+开始测试...
+测试损失: 0.955564
+
+==================================================
+开始在数据集 Energy_lb36_h36 上训练...
+回看窗口: 36, 预测窗口: 36
+==================================================
+数据形状: (1551, 72, 9)
+数据集划分 - 训练集: 1085, 验证集: 155, 测试集: 311
+
+开始训练...
+Epoch 1/100 - Train Loss: 0.066196, Val Loss: 0.148582
+Epoch 2/100 - Train Loss: 0.076175, Val Loss: 0.139783
+Epoch 3/100 - Train Loss: 0.081612, Val Loss: 0.150733
+Epoch 4/100 - Train Loss: 0.086082, Val Loss: 0.149995
+Epoch 5/100 - Train Loss: 0.074378, Val Loss: 0.139614
+Epoch 6/100 - Train Loss: 0.070448, Val Loss: 0.149540
+Epoch 7/100 - Train Loss: 0.079671, Val Loss: 0.159030
+Epoch 8/100 - Train Loss: 0.086398, Val Loss: 0.171364
+Epoch 9/100 - Train Loss: 0.088249, Val Loss: 0.131936
+Epoch 10/100 - Train Loss: 0.070662, Val Loss: 0.144245
+Epoch 11/100 - Train Loss: 0.076299, Val Loss: 0.136471
+Epoch 12/100 - Train Loss: 0.077223, Val Loss: 0.153116
+Epoch 13/100 - Train Loss: 0.081300, Val Loss: 0.143467
+Epoch 14/100 - Train Loss: 0.076839, Val Loss: 0.149657
+Epoch 15/100 - Train Loss: 0.078160, Val Loss: 0.144999
+Epoch 16/100 - Train Loss: 0.080402, Val Loss: 0.133039
+Epoch 17/100 - Train Loss: 0.070916, Val Loss: 0.143196
+Epoch 18/100 - Train Loss: 0.076597, Val Loss: 0.148377
+Epoch 19/100 - Train Loss: 0.079537, Val Loss: 0.144661
+
+Early stopping at epoch 19
+
+训练完成！用时: 639.79秒
+最佳验证损失: 0.131936
+
+开始测试...
+测试损失: 0.688990
+
+==================================================
+开始在数据集 Energy_lb36_h48 上训练...
+回看窗口: 36, 预测窗口: 48
+==================================================
+数据形状: (1539, 84, 9)
+数据集划分 - 训练集: 1077, 验证集: 153, 测试集: 309
+
+开始训练...
+Epoch 1/100 - Train Loss: 0.076818, Val Loss: 0.372603
+Epoch 2/100 - Train Loss: 0.083186, Val Loss: 0.402366
+Epoch 3/100 - Train Loss: 0.090640, Val Loss: 0.277619
+Epoch 4/100 - Train Loss: 0.085512, Val Loss: 0.294105
+Epoch 5/100 - Train Loss: 0.097853, Val Loss: 0.264677
+Epoch 6/100 - Train Loss: 0.102880, Val Loss: 0.400374
+Epoch 7/100 - Train Loss: 0.123648, Val Loss: 0.228626
+Epoch 8/100 - Train Loss: 0.116071, Val Loss: 0.436108
+Epoch 9/100 - Train Loss: 0.145520, Val Loss: 0.283853
+Epoch 10/100 - Train Loss: 0.147441, Val Loss: 0.289669
+Epoch 11/100 - Train Loss: 0.111004, Val Loss: 0.369251
+Epoch 12/100 - Train Loss: 0.224185, Val Loss: 0.564893
+Epoch 13/100 - Train Loss: 1.304053, Val Loss: 0.126063
+Epoch 14/100 - Train Loss: 1.078623, Val Loss: 0.094559
+Epoch 15/100 - Train Loss: 1.035960, Val Loss: 0.088951
+Epoch 16/100 - Train Loss: 1.023650, Val Loss: 0.087516
+Epoch 17/100 - Train Loss: 1.019677, Val Loss: 0.087073
+Epoch 18/100 - Train Loss: 1.018349, Val Loss: 0.086927
+Epoch 19/100 - Train Loss: 1.017901, Val Loss: 0.086877
+Epoch 20/100 - Train Loss: 1.017749, Val Loss: 0.086860
+Epoch 21/100 - Train Loss: 1.017698, Val Loss: 0.086854
+Epoch 22/100 - Train Loss: 1.017681, Val Loss: 0.086852
+Epoch 23/100 - Train Loss: 1.017675, Val Loss: 0.086851
+Epoch 24/100 - Train Loss: 1.017673, Val Loss: 0.086851
+Epoch 25/100 - Train Loss: 1.017672, Val Loss: 0.086851
+Epoch 26/100 - Train Loss: 1.017672, Val Loss: 0.086851
+Epoch 27/100 - Train Loss: 1.017672, Val Loss: 0.086851
+Epoch 28/100 - Train Loss: 1.017672, Val Loss: 0.086851
+
+Early stopping at epoch 28
+
+训练完成！用时: 933.40秒
+最佳验证损失: 0.086851
+
+开始测试...
+测试损失: 0.878270
+当前工作目录: /opt/data/private/ReTaMTSF/baseline
+检查文件路径: ../dataset/Time-MMD/numerical/Climate/Climate.parquet
+文件是否存在: True
+
+================================================================================
+处理数据集: Climate
+================================================================================
+
+==================================================
+开始在数据集 Climate_lb8_h6 上训练...
+回看窗口: 8, 预测窗口: 6
+==================================================
+数据形状: (1259, 14, 6)
+数据集划分 - 训练集: 881, 验证集: 125, 测试集: 253
+
+开始训练...
+Epoch 1/100 - Train Loss: 0.234418, Val Loss: 0.964425
+Epoch 2/100 - Train Loss: 0.301933, Val Loss: 1.045601
+Epoch 3/100 - Train Loss: 0.819284, Val Loss: 1.219638
+Epoch 4/100 - Train Loss: 0.814823, Val Loss: 1.236001
+Epoch 5/100 - Train Loss: 0.813646, Val Loss: 1.243090
+Epoch 6/100 - Train Loss: 0.813268, Val Loss: 1.246206
+Epoch 7/100 - Train Loss: 0.813130, Val Loss: 1.247574
+Epoch 8/100 - Train Loss: 0.428738, Val Loss: 0.929400
+Epoch 9/100 - Train Loss: 0.390972, Val Loss: 0.961006
+Epoch 10/100 - Train Loss: 0.379263, Val Loss: 0.791178
+Epoch 11/100 - Train Loss: 0.420210, Val Loss: 0.965852
+Epoch 12/100 - Train Loss: 0.464005, Val Loss: 0.785925
+Epoch 13/100 - Train Loss: 0.505279, Val Loss: 0.733127
+Epoch 14/100 - Train Loss: 0.446101, Val Loss: 0.711816
+Epoch 15/100 - Train Loss: 0.450092, Val Loss: 0.757040
+Epoch 16/100 - Train Loss: 0.466524, Val Loss: 0.830734
+Epoch 17/100 - Train Loss: 0.439721, Val Loss: 0.794106
+Epoch 18/100 - Train Loss: 0.442846, Val Loss: 0.776274
+Epoch 19/100 - Train Loss: 0.534997, Val Loss: 0.712228
+Epoch 20/100 - Train Loss: 0.563556, Val Loss: 1.016819
+Epoch 21/100 - Train Loss: 0.468259, Val Loss: 0.701028
+Epoch 22/100 - Train Loss: 0.518562, Val Loss: 0.839215
+Epoch 23/100 - Train Loss: 0.557467, Val Loss: 0.746465
+Epoch 24/100 - Train Loss: 0.483461, Val Loss: 0.704041
+Epoch 25/100 - Train Loss: 0.480142, Val Loss: 0.853995
+Epoch 26/100 - Train Loss: 0.587326, Val Loss: 0.922718
+Epoch 27/100 - Train Loss: 0.680478, Val Loss: 0.914479
+Epoch 28/100 - Train Loss: 0.482046, Val Loss: 0.711162
+Epoch 29/100 - Train Loss: 0.547980, Val Loss: 0.902714
+Epoch 30/100 - Train Loss: 0.639840, Val Loss: 0.727500
+Epoch 31/100 - Train Loss: 0.565733, Val Loss: 0.771914
+
+Early stopping at epoch 31
+
+训练完成！用时: 832.74秒
+最佳验证损失: 0.701028
+
+开始测试...
+测试损失: 2.279042
+
+==================================================
+开始在数据集 Climate_lb8_h8 上训练...
+回看窗口: 8, 预测窗口: 8
+==================================================
+数据形状: (1257, 16, 6)
+数据集划分 - 训练集: 879, 验证集: 125, 测试集: 253
+
+开始训练...
+Epoch 1/100 - Train Loss: 0.261423, Val Loss: 0.834734
+Epoch 2/100 - Train Loss: 0.289873, Val Loss: 0.876941
+Epoch 3/100 - Train Loss: 0.372645, Val Loss: 0.845734
+Epoch 4/100 - Train Loss: 0.335366, Val Loss: 0.891159
+Epoch 5/100 - Train Loss: 0.414486, Val Loss: 0.709083
+Epoch 6/100 - Train Loss: 0.455853, Val Loss: 0.920159
+Epoch 7/100 - Train Loss: 0.399099, Val Loss: 0.757350
+Epoch 8/100 - Train Loss: 0.396322, Val Loss: 0.691056
+Epoch 9/100 - Train Loss: 0.378815, Val Loss: 0.869897
+Epoch 10/100 - Train Loss: 0.340012, Val Loss: 0.787307
+Epoch 11/100 - Train Loss: 0.412044, Val Loss: 0.757356
+Epoch 12/100 - Train Loss: 0.364275, Val Loss: 0.739111
+Epoch 13/100 - Train Loss: 0.398428, Val Loss: 0.781189
+Epoch 14/100 - Train Loss: 0.463095, Val Loss: 0.881166
+Epoch 15/100 - Train Loss: 0.410160, Val Loss: 0.721333
+Epoch 16/100 - Train Loss: 0.472350, Val Loss: 0.678208
+Epoch 17/100 - Train Loss: 0.397047, Val Loss: 0.719116
+Epoch 18/100 - Train Loss: 0.429299, Val Loss: 0.752598
+Epoch 19/100 - Train Loss: 0.391860, Val Loss: 0.700995
+Epoch 20/100 - Train Loss: 0.411684, Val Loss: 0.686196
+Epoch 21/100 - Train Loss: 0.382840, Val Loss: 0.684318
+Epoch 22/100 - Train Loss: 0.404522, Val Loss: 0.731201
+Epoch 23/100 - Train Loss: 0.393250, Val Loss: 0.673487
+Epoch 24/100 - Train Loss: 0.420283, Val Loss: 0.703398
+Epoch 25/100 - Train Loss: 0.412045, Val Loss: 0.743544
+Epoch 26/100 - Train Loss: 0.424174, Val Loss: 0.721809
+Epoch 27/100 - Train Loss: 0.423241, Val Loss: 0.762051
+Epoch 28/100 - Train Loss: 0.446470, Val Loss: 0.671970
+Epoch 29/100 - Train Loss: 0.431048, Val Loss: 0.692412
+Epoch 30/100 - Train Loss: 0.418798, Val Loss: 0.808781
+Epoch 31/100 - Train Loss: 0.521665, Val Loss: 0.702297
+Epoch 32/100 - Train Loss: 0.416159, Val Loss: 0.692768
+Epoch 33/100 - Train Loss: 0.421383, Val Loss: 0.735474
+Epoch 34/100 - Train Loss: 0.414889, Val Loss: 0.678715
+Epoch 35/100 - Train Loss: 0.405840, Val Loss: 0.728755
+Epoch 36/100 - Train Loss: 0.362731, Val Loss: 0.726759
+Epoch 37/100 - Train Loss: 0.398195, Val Loss: 0.703784
+Epoch 38/100 - Train Loss: 0.405121, Val Loss: 0.680088
+
+Early stopping at epoch 38
+
+训练完成！用时: 1016.74秒
+最佳验证损失: 0.671970
+
+开始测试...
+测试损失: 2.244578
+
+==================================================
+开始在数据集 Climate_lb8_h10 上训练...
+回看窗口: 8, 预测窗口: 10
+==================================================
+数据形状: (1255, 18, 6)
+数据集划分 - 训练集: 878, 验证集: 125, 测试集: 252
+
+开始训练...
+Epoch 1/100 - Train Loss: 0.277983, Val Loss: 0.862704
+Epoch 2/100 - Train Loss: 0.352396, Val Loss: 0.928360
+Epoch 3/100 - Train Loss: 0.346766, Val Loss: 0.938865
+Epoch 4/100 - Train Loss: 0.419360, Val Loss: 0.880296
+Epoch 5/100 - Train Loss: 0.412383, Val Loss: 0.767368
+Epoch 6/100 - Train Loss: 0.393325, Val Loss: 0.946082
+Epoch 7/100 - Train Loss: 0.410506, Val Loss: 0.872333
+Epoch 8/100 - Train Loss: 0.456609, Val Loss: 0.959877
+Epoch 9/100 - Train Loss: 0.500040, Val Loss: 0.700191
+Epoch 10/100 - Train Loss: 0.462990, Val Loss: 0.734413
+Epoch 11/100 - Train Loss: 0.549814, Val Loss: 0.928155
+Epoch 12/100 - Train Loss: 0.474820, Val Loss: 0.786923
+Epoch 13/100 - Train Loss: 0.463654, Val Loss: 0.840401
+Epoch 14/100 - Train Loss: 0.421524, Val Loss: 0.814421
+Epoch 15/100 - Train Loss: 0.422433, Val Loss: 0.859991
+Epoch 16/100 - Train Loss: 0.494951, Val Loss: 0.745972
+Epoch 17/100 - Train Loss: 0.480286, Val Loss: 0.837427
+Epoch 18/100 - Train Loss: 0.549983, Val Loss: 0.661069
+Epoch 19/100 - Train Loss: 0.514723, Val Loss: 0.696129
+Epoch 20/100 - Train Loss: 0.482644, Val Loss: 0.789238
+Epoch 21/100 - Train Loss: 0.516329, Val Loss: 0.865070
+Epoch 22/100 - Train Loss: 0.482860, Val Loss: 0.738720
+Epoch 23/100 - Train Loss: 0.497842, Val Loss: 0.771689
+Epoch 24/100 - Train Loss: 0.494095, Val Loss: 0.746830
+Epoch 25/100 - Train Loss: 0.519034, Val Loss: 0.660217
+Epoch 26/100 - Train Loss: 0.564623, Val Loss: 0.804245
+Epoch 27/100 - Train Loss: 0.463372, Val Loss: 0.703682
+Epoch 28/100 - Train Loss: 0.447526, Val Loss: 0.737562
+Epoch 29/100 - Train Loss: 0.534573, Val Loss: 0.890368
+Epoch 30/100 - Train Loss: 0.581677, Val Loss: 0.865676
+Epoch 31/100 - Train Loss: 0.476663, Val Loss: 0.745363
+Epoch 32/100 - Train Loss: 0.582522, Val Loss: 0.812805
+Epoch 33/100 - Train Loss: 0.584872, Val Loss: 1.183280
+Epoch 34/100 - Train Loss: 0.504142, Val Loss: 0.698286
+Epoch 35/100 - Train Loss: 0.450708, Val Loss: 0.743515
+
+Early stopping at epoch 35
+
+训练完成！用时: 928.95秒
+最佳验证损失: 0.660217
+
+开始测试...
+测试损失: 2.208611
+
+==================================================
+开始在数据集 Climate_lb8_h12 上训练...
+回看窗口: 8, 预测窗口: 12
+==================================================
+数据形状: (1253, 20, 6)
+数据集划分 - 训练集: 877, 验证集: 125, 测试集: 251
+
+开始训练...
+Epoch 1/100 - Train Loss: 0.244812, Val Loss: 0.828735
+Epoch 2/100 - Train Loss: 0.304332, Val Loss: 0.945848
+Epoch 3/100 - Train Loss: 0.403797, Val Loss: 0.737861
+Epoch 4/100 - Train Loss: 0.476132, Val Loss: 0.713993
+Epoch 5/100 - Train Loss: 0.510287, Val Loss: 0.831918
+Epoch 6/100 - Train Loss: 0.463019, Val Loss: 0.807365
+Epoch 7/100 - Train Loss: 0.511394, Val Loss: 0.815363
+Epoch 8/100 - Train Loss: 0.399973, Val Loss: 0.861472
+Epoch 9/100 - Train Loss: 0.573896, Val Loss: 0.857307
+Epoch 10/100 - Train Loss: 0.531438, Val Loss: 0.808557
+Epoch 11/100 - Train Loss: 0.459124, Val Loss: 0.696203
+Epoch 12/100 - Train Loss: 0.453275, Val Loss: 0.721329
+Epoch 13/100 - Train Loss: 0.494289, Val Loss: 0.891897
+Epoch 14/100 - Train Loss: 0.490801, Val Loss: 0.852086
+Epoch 15/100 - Train Loss: 0.518315, Val Loss: 0.760744
+Epoch 16/100 - Train Loss: 0.469200, Val Loss: 0.813507
+Epoch 17/100 - Train Loss: 0.413992, Val Loss: 0.828730
+Epoch 18/100 - Train Loss: 0.523304, Val Loss: 0.714759
+Epoch 19/100 - Train Loss: 0.488369, Val Loss: 0.801517
+Epoch 20/100 - Train Loss: 0.440783, Val Loss: 0.712653
+Epoch 21/100 - Train Loss: 0.520665, Val Loss: 0.783622
+
+Early stopping at epoch 21
+
+训练完成！用时: 564.74秒
+最佳验证损失: 0.696203
+
+开始测试...
+测试损失: 2.166929
+当前工作目录: /opt/data/private/ReTaMTSF/baseline
+检查文件路径: ../dataset/Time-MMD/numerical/Health_US/Health_US.parquet
+文件是否存在: True
+
+================================================================================
+处理数据集: Health_US
+================================================================================
+
+==================================================
+开始在数据集 Health_US_lb36_h12 上训练...
+回看窗口: 36, 预测窗口: 12
+==================================================
+数据形状: (1342, 48, 11)
+数据集划分 - 训练集: 939, 验证集: 134, 测试集: 269
+
+开始训练...
+Epoch 1/100 - Train Loss: 0.280786, Val Loss: 0.587657
+Epoch 2/100 - Train Loss: 0.315578, Val Loss: 0.583963
+Epoch 3/100 - Train Loss: 0.336637, Val Loss: 0.595665
+Epoch 4/100 - Train Loss: 0.327024, Val Loss: 0.601344
+Epoch 5/100 - Train Loss: 0.325805, Val Loss: 0.602658
+Epoch 6/100 - Train Loss: 0.337511, Val Loss: 0.602402
+Epoch 7/100 - Train Loss: 0.323110, Val Loss: 0.572650
+Epoch 8/100 - Train Loss: 0.319134, Val Loss: 0.592273
+Epoch 9/100 - Train Loss: 0.326642, Val Loss: 0.594281
+Epoch 10/100 - Train Loss: 0.324118, Val Loss: 0.595870
+Epoch 11/100 - Train Loss: 0.327543, Val Loss: 0.595599
+Epoch 12/100 - Train Loss: 0.325559, Val Loss: 0.599075
+Epoch 13/100 - Train Loss: 0.323720, Val Loss: 0.585674
+Epoch 14/100 - Train Loss: 0.325359, Val Loss: 0.592427
+Epoch 15/100 - Train Loss: 0.329686, Val Loss: 0.586890
+Epoch 16/100 - Train Loss: 0.321493, Val Loss: 0.606689
+Epoch 17/100 - Train Loss: 0.322467, Val Loss: 0.593910
+
+Early stopping at epoch 17
+
+训练完成！用时: 489.73秒
+最佳验证损失: 0.572650
+
+开始测试...
+测试损失: 2.884632
+
+==================================================
+开始在数据集 Health_US_lb36_h24 上训练...
+回看窗口: 36, 预测窗口: 24
+==================================================
+数据形状: (1330, 60, 11)
+数据集划分 - 训练集: 930, 验证集: 133, 测试集: 267
+
+开始训练...
+Epoch 1/100 - Train Loss: 0.250042, Val Loss: 0.586722
+Epoch 2/100 - Train Loss: 0.319680, Val Loss: 0.596106
+Epoch 3/100 - Train Loss: 0.350596, Val Loss: 0.590442
+Epoch 4/100 - Train Loss: 0.335422, Val Loss: 0.567834
+Epoch 5/100 - Train Loss: 0.340125, Val Loss: 0.559535
+Epoch 6/100 - Train Loss: 0.330771, Val Loss: 0.560167
+Epoch 7/100 - Train Loss: 0.314324, Val Loss: 0.558933
+Epoch 8/100 - Train Loss: 0.340294, Val Loss: 0.565505
+Epoch 9/100 - Train Loss: 0.344982, Val Loss: 0.564151
+Epoch 10/100 - Train Loss: 0.323676, Val Loss: 0.547698
+Epoch 11/100 - Train Loss: 0.361754, Val Loss: 0.562647
+Epoch 12/100 - Train Loss: 0.377105, Val Loss: 0.685427
+Epoch 13/100 - Train Loss: 0.380474, Val Loss: 0.681059
+Epoch 14/100 - Train Loss: 0.380939, Val Loss: 0.680459
+Epoch 15/100 - Train Loss: 0.381032, Val Loss: 0.680434
+Epoch 16/100 - Train Loss: 0.381057, Val Loss: 0.680483
+Epoch 17/100 - Train Loss: 0.381064, Val Loss: 0.680521
+Epoch 18/100 - Train Loss: 0.381066, Val Loss: 0.680544
+Epoch 19/100 - Train Loss: 0.381067, Val Loss: 0.680555
+Epoch 20/100 - Train Loss: 0.381067, Val Loss: 0.680560
+
+Early stopping at epoch 20
+
+训练完成！用时: 572.42秒
+最佳验证损失: 0.547698
+
+开始测试...
+测试损失: 2.676706
+
+==================================================
+开始在数据集 Health_US_lb36_h36 上训练...
+回看窗口: 36, 预测窗口: 36
+==================================================
+数据形状: (1318, 72, 11)
+数据集划分 - 训练集: 922, 验证集: 131, 测试集: 265
+
+开始训练...
+Epoch 1/100 - Train Loss: 0.259130, Val Loss: 0.560883
+Epoch 2/100 - Train Loss: 0.290353, Val Loss: 0.568542
+Epoch 3/100 - Train Loss: 0.295774, Val Loss: 0.560741
+Epoch 4/100 - Train Loss: 0.277228, Val Loss: 0.566413
+Epoch 5/100 - Train Loss: 0.280153, Val Loss: 0.557878
+Epoch 6/100 - Train Loss: 0.281559, Val Loss: 0.566427
+Epoch 7/100 - Train Loss: 0.286716, Val Loss: 0.566116
+Epoch 8/100 - Train Loss: 0.309095, Val Loss: 0.565621
+Epoch 9/100 - Train Loss: 0.292233, Val Loss: 0.566447
+Epoch 10/100 - Train Loss: 0.292771, Val Loss: 0.568581
+Epoch 11/100 - Train Loss: 0.301084, Val Loss: 0.567453
+Epoch 12/100 - Train Loss: 0.294157, Val Loss: 0.565840
+Epoch 13/100 - Train Loss: 0.285572, Val Loss: 0.569841
+Epoch 14/100 - Train Loss: 0.291765, Val Loss: 0.574285
+Epoch 15/100 - Train Loss: 0.283254, Val Loss: 0.575370
+
+Early stopping at epoch 15
+
+训练完成！用时: 418.69秒
+最佳验证损失: 0.557878
+
+开始测试...
+测试损失: 2.565447
+
+==================================================
+开始在数据集 Health_US_lb36_h48 上训练...
+回看窗口: 36, 预测窗口: 48
+==================================================
+数据形状: (1306, 84, 11)
+数据集划分 - 训练集: 914, 验证集: 130, 测试集: 262
+
+开始训练...
+Epoch 1/100 - Train Loss: 0.266347, Val Loss: 0.582258
+Epoch 2/100 - Train Loss: 0.281619, Val Loss: 0.582097
+Epoch 3/100 - Train Loss: 0.292221, Val Loss: 0.596955
+Epoch 4/100 - Train Loss: 0.379260, Val Loss: 0.645403
+Epoch 5/100 - Train Loss: 0.376249, Val Loss: 0.655894
+Epoch 6/100 - Train Loss: 0.376324, Val Loss: 0.659583
+Epoch 7/100 - Train Loss: 0.302009, Val Loss: 0.593814
+Epoch 8/100 - Train Loss: 0.273422, Val Loss: 0.579294
+Epoch 9/100 - Train Loss: 0.342053, Val Loss: 0.635884
+Epoch 10/100 - Train Loss: 0.375862, Val Loss: 0.651889
+Epoch 11/100 - Train Loss: 0.376156, Val Loss: 0.657797
+Epoch 12/100 - Train Loss: 0.376373, Val Loss: 0.660292
+Epoch 13/100 - Train Loss: 0.376484, Val Loss: 0.661403
+Epoch 14/100 - Train Loss: 0.376539, Val Loss: 0.661907
+Epoch 15/100 - Train Loss: 0.376565, Val Loss: 0.662137
+Epoch 16/100 - Train Loss: 0.376579, Val Loss: 0.662244
+Epoch 17/100 - Train Loss: 0.376585, Val Loss: 0.662294
+Epoch 18/100 - Train Loss: 0.376589, Val Loss: 0.662318
+
+Early stopping at epoch 18
+
+训练完成！用时: 507.13秒
+最佳验证损失: 0.579294
+
+开始测试...
+测试损失: 2.510802
+当前工作目录: /opt/data/private/ReTaMTSF/baseline
+检查文件路径: ../dataset/Time-MMD/numerical/Environment/Environment.parquet
+文件是否存在: True
+
+================================================================================
+处理数据集: Environment
+================================================================================
+
+==================================================
+开始在数据集 Environment_lb96_h48 上训练...
+回看窗口: 96, 预测窗口: 48
+==================================================
+数据形状: (15836, 144, 4)
+数据集划分 - 训练集: 11085, 验证集: 1583, 测试集: 3168
+
+开始训练...
+Epoch 1/100 - Train Loss: 0.735338, Val Loss: 0.719152
+Epoch 2/100 - Train Loss: 0.893179, Val Loss: 0.718915
+Epoch 3/100 - Train Loss: 0.893182, Val Loss: 0.718915
+Epoch 4/100 - Train Loss: 0.893182, Val Loss: 0.718915
+Epoch 5/100 - Train Loss: 0.893182, Val Loss: 0.718915
+Epoch 6/100 - Train Loss: 0.893182, Val Loss: 0.718915
+Epoch 7/100 - Train Loss: 0.893182, Val Loss: 0.718915
+Epoch 8/100 - Train Loss: 0.893182, Val Loss: 0.718915
+Epoch 9/100 - Train Loss: 0.893182, Val Loss: 0.718915
+Epoch 10/100 - Train Loss: 0.893182, Val Loss: 0.718915
+Epoch 11/100 - Train Loss: 0.893182, Val Loss: 0.718915
+Epoch 12/100 - Train Loss: 0.893182, Val Loss: 0.718915
+
+Early stopping at epoch 12
+
+训练完成！用时: 4230.65秒
+最佳验证损失: 0.718915
+
+开始测试...
+测试损失: 0.893896
+
+==================================================
+开始在数据集 Environment_lb96_h96 上训练...
+回看窗口: 96, 预测窗口: 96
+==================================================
+数据形状: (15788, 192, 4)
+数据集划分 - 训练集: 11051, 验证集: 1578, 测试集: 3159
+
+开始训练...
+Epoch 1/100 - Train Loss: 0.644958, Val Loss: 0.970354
+Epoch 2/100 - Train Loss: 0.645831, Val Loss: 0.914245
+Epoch 3/100 - Train Loss: 0.650469, Val Loss: 1.158243
+Epoch 4/100 - Train Loss: 0.722385, Val Loss: 0.729851
+Epoch 5/100 - Train Loss: 0.882586, Val Loss: 0.949749
+Epoch 6/100 - Train Loss: 0.663970, Val Loss: 0.931353
+Epoch 7/100 - Train Loss: 0.673601, Val Loss: 0.820159
+Epoch 8/100 - Train Loss: 0.885830, Val Loss: 0.728790
+Epoch 9/100 - Train Loss: 0.886676, Val Loss: 0.728782
+Epoch 10/100 - Train Loss: 0.886677, Val Loss: 0.728782
+Epoch 11/100 - Train Loss: 0.886677, Val Loss: 0.728782
+Epoch 12/100 - Train Loss: 0.886677, Val Loss: 0.728782
+Epoch 13/100 - Train Loss: 0.886677, Val Loss: 0.728782
+Epoch 14/100 - Train Loss: 0.886677, Val Loss: 0.728782
+Epoch 15/100 - Train Loss: 0.886677, Val Loss: 0.728782
+Epoch 16/100 - Train Loss: 0.886677, Val Loss: 0.728782
+Epoch 17/100 - Train Loss: 0.886677, Val Loss: 0.728782
+Epoch 18/100 - Train Loss: 0.886677, Val Loss: 0.728782
+
+Early stopping at epoch 18
+
+训练完成！用时: 6267.72秒
+最佳验证损失: 0.728782
+
+开始测试...
+测试损失: 0.885664
+
+==================================================
+开始在数据集 Environment_lb96_h192 上训练...
+回看窗口: 96, 预测窗口: 192
+==================================================
+数据形状: (15692, 288, 4)
+数据集划分 - 训练集: 10984, 验证集: 1569, 测试集: 3139
+
+开始训练...
+Epoch 1/100 - Train Loss: 0.743878, Val Loss: 0.758000
+Epoch 2/100 - Train Loss: 0.868696, Val Loss: 0.755268
+Epoch 3/100 - Train Loss: 0.871428, Val Loss: 0.756349
+Epoch 4/100 - Train Loss: 0.871800, Val Loss: 0.756349
+Epoch 5/100 - Train Loss: 0.871800, Val Loss: 0.756349
+Epoch 6/100 - Train Loss: 0.871800, Val Loss: 0.756349
+Epoch 7/100 - Train Loss: 0.871800, Val Loss: 0.756349
+Epoch 8/100 - Train Loss: 0.871800, Val Loss: 0.756349
+Epoch 9/100 - Train Loss: 0.871800, Val Loss: 0.756349
+Epoch 10/100 - Train Loss: 0.871723, Val Loss: 0.756349
+Epoch 11/100 - Train Loss: 0.871801, Val Loss: 0.756349
+Epoch 12/100 - Train Loss: 0.871800, Val Loss: 0.756349
+
+Early stopping at epoch 12
+
+训练完成！用时: 4226.33秒
+最佳验证损失: 0.755268
+
+开始测试...
+测试损失: 0.890419
+
+==================================================
+开始在数据集 Environment_lb96_h336 上训练...
+回看窗口: 96, 预测窗口: 336
+==================================================
+数据形状: (15548, 432, 4)
+数据集划分 - 训练集: 10883, 验证集: 1554, 测试集: 3111
+
+开始训练...
+Epoch 1/100 - Train Loss: 0.693825, Val Loss: 0.792024
+Epoch 2/100 - Train Loss: 0.728671, Val Loss: 0.786737
+Epoch 3/100 - Train Loss: 0.734896, Val Loss: 0.791741
+Epoch 4/100 - Train Loss: 0.769193, Val Loss: 0.802042
+Epoch 5/100 - Train Loss: 0.774144, Val Loss: 0.801291
+Epoch 6/100 - Train Loss: 0.774976, Val Loss: 0.803871
+Epoch 7/100 - Train Loss: 0.775199, Val Loss: 0.804795
+Epoch 8/100 - Train Loss: 0.775079, Val Loss: 0.803030
+Epoch 9/100 - Train Loss: 0.775008, Val Loss: 0.803975
+Epoch 10/100 - Train Loss: 0.774904, Val Loss: 0.801158
+Epoch 11/100 - Train Loss: 0.774793, Val Loss: 0.803808
+Epoch 12/100 - Train Loss: 0.774718, Val Loss: 0.800971
+
+Early stopping at epoch 12
+
+训练完成！用时: 4177.85秒
+最佳验证损失: 0.786737
+
+开始测试...
+测试损失: 0.893406
+
+====================================================================================================
+所有数据集训练完成！
+====================================================================================================
+
+各数据集测试结果:
+--------------------------------------------------------------------------------
+Energy_lb36_h12:
+  - 最佳验证损失: 0.071285
+  - 测试损失: 0.904085
+  - 训练时间: 454.58秒
+
+Energy_lb36_h24:
+  - 最佳验证损失: 0.066558
+  - 测试损失: 0.955564
+  - 训练时间: 418.55秒
+
+Energy_lb36_h36:
+  - 最佳验证损失: 0.131936
+  - 测试损失: 0.688990
+  - 训练时间: 639.79秒
+
+Energy_lb36_h48:
+  - 最佳验证损失: 0.086851
+  - 测试损失: 0.878270
+  - 训练时间: 933.40秒
+
+Climate_lb8_h6:
+  - 最佳验证损失: 0.701028
+  - 测试损失: 2.279042
+  - 训练时间: 832.74秒
+
+Climate_lb8_h8:
+  - 最佳验证损失: 0.671970
+  - 测试损失: 2.244578
+  - 训练时间: 1016.74秒
+
+Climate_lb8_h10:
+  - 最佳验证损失: 0.660217
+  - 测试损失: 2.208611
+  - 训练时间: 928.95秒
+
+Climate_lb8_h12:
+  - 最佳验证损失: 0.696203
+  - 测试损失: 2.166929
+  - 训练时间: 564.74秒
+
+Health_US_lb36_h12:
+  - 最佳验证损失: 0.572650
+  - 测试损失: 2.884632
+  - 训练时间: 489.73秒
+
+Health_US_lb36_h24:
+  - 最佳验证损失: 0.547698
+  - 测试损失: 2.676706
+  - 训练时间: 572.42秒
+
+Health_US_lb36_h36:
+  - 最佳验证损失: 0.557878
+  - 测试损失: 2.565447
+  - 训练时间: 418.69秒
+
+Health_US_lb36_h48:
+  - 最佳验证损失: 0.579294
+  - 测试损失: 2.510802
+  - 训练时间: 507.13秒
+
+Environment_lb96_h48:
+  - 最佳验证损失: 0.718915
+  - 测试损失: 0.893896
+  - 训练时间: 4230.65秒
+
+Environment_lb96_h96:
+  - 最佳验证损失: 0.728782
+  - 测试损失: 0.885664
+  - 训练时间: 6267.72秒
+
+Environment_lb96_h192:
+  - 最佳验证损失: 0.755268
+  - 测试损失: 0.890419
+  - 训练时间: 4226.33秒
+
+Environment_lb96_h336:
+  - 最佳验证损失: 0.786737
+  - 测试损失: 0.893406
+  - 训练时间: 4177.85秒
+
