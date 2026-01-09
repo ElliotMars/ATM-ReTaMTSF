@@ -38,7 +38,8 @@ def ReTaMTSF_Energy_data_provider(args, flag, target_ids):
         target_ids=target_ids,
         scale=True,
         stride=args.stride,
-        num_data=args.num_data# disable the individual norm
+        num_data=args.num_data,  # disable the individual norm
+        text_mode=getattr(args, "text_mode", "retrieval"),
     )
     print(flag, len(data_set))
     data_loader = DataLoader(
@@ -94,7 +95,8 @@ def ReTaMTSF_Health_US_data_provider(args, flag, target_ids):
         target_ids=target_ids,
         scale=True,
         stride=args.stride,
-        num_data=args.num_data# disable the individual norm
+        num_data=args.num_data,  # disable the individual norm
+        text_mode=getattr(args, "text_mode", "retrieval"),
     )
     print(flag, len(data_set))
     data_loader = DataLoader(
@@ -154,7 +156,8 @@ def ReTaMTSF_Environment_data_provider(args, flag, target_ids):
         target_ids=target_ids,
         scale=True,
         stride=args.stride,
-        num_data=args.num_data# disable the individual norm
+        num_data=args.num_data,  # disable the individual norm
+        text_mode=getattr(args, "text_mode", "retrieval"),
     )
     print(flag, len(data_set))
     data_loader = DataLoader(
@@ -214,7 +217,8 @@ def ReTaMTSF_Climate_data_provider(args, flag, target_ids):
         target_ids=target_ids,
         scale=True,
         stride=args.stride,
-        num_data=args.num_data# disable the individual norm
+        num_data=args.num_data,  # disable the individual norm
+        text_mode=getattr(args, "text_mode", "retrieval"),
     )
     print(flag, len(data_set))
     data_loader = DataLoader(

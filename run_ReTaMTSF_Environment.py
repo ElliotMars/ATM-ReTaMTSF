@@ -36,11 +36,19 @@ parser.add_argument('--test_flop', action='store_true', default=False, help='See
 #parser.add_argument('--freq_sample', type=float, default=0.00167, help='frequency of sampling')#10min
 parser.add_argument('--nperseg', type=int, default=48, help='number of samples per segment')#seq_len//2
 parser.add_argument('--nref', type=int, default=3, help='number of reference TS')#nref < 20
+parser.add_argument('--ts_retrieval', type=str, default='coherence',
+                    choices=['coherence', 'lagged_corr', 'partial_corr', 'granger'],
+                    help='time series retrieval mode')
+parser.add_argument('--max_lag', type=int, default=12, help='max lag for lagged correlation')
+parser.add_argument('--granger_lag', type=int, default=3, help='lag order for Granger score')
 #Content Synthesis
 parser.add_argument('--naggregation', type=int, default=3, help='number of aggregation module')
 #text retrival
 parser.add_argument('--nref_text', type=int, default=4, help='number of text retrival')#nref_text=nref+1
 parser.add_argument('--qt_ref_text', type=int, default=4, help='number of text retrival by qt')
+parser.add_argument('--text_mode', type=str, default='retrieval',
+                    choices=['retrieval', 'aligned', 'random'],
+                    help='text retrieval mode')
 
 #forecasting task
 parser.add_argument('--seq_len', type=int, default=96, help='sequence length')

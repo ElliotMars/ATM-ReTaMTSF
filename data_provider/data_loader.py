@@ -7,7 +7,7 @@ from datetime import datetime
 
 class Dataset_ReTaMTSF_Energy(Dataset):
     def __init__(self, root_path, TS_data_path, QT_emb_path, Des_emb_path, NewsDatabase_path, flag,
-                 size, target_ids, scale, stride, num_data):
+                 size, target_ids, scale, stride, num_data, text_mode="retrieval"):
 
         # size [seq_len, pred_len, label_len]
 
@@ -32,6 +32,7 @@ class Dataset_ReTaMTSF_Energy(Dataset):
         self.scale = scale
         self.stride = stride
         self.num_data = num_data
+        self.text_mode = text_mode
 
 
         self.__read_data__()
@@ -127,40 +128,53 @@ class Dataset_ReTaMTSF_Energy(Dataset):
         des_embeddings = np.stack(des_embeddings,axis=0)
 
         directory_nd = os.path.join(self.root_path, self.NewsDatabase_path)
-        time_head = str(time_span_sample[0])
-        time_tail = str(time_span_sample[-1])
+        if self.text_mode == "aligned":
+            arrays = []
+            for point in time_span_sample:
+                time_str = str(point)[:10]
+                file_path = os.path.join(directory_nd, f"News-{time_str}.npy")
+                if os.path.exists(file_path):
+                    array = np.load(file_path)
+                else:
+                    array = np.zeros((1, 384), dtype=np.float32)
+                arrays.append(array)
+            newsdatabase_sample = np.stack(arrays, axis=0)
+        elif self.text_mode == "random":
+            if not hasattr(self, "news_files"):
+                self.news_files = [f for f in os.listdir(directory_nd) if f.endswith(".npy")]
+            arrays = []
+            for _ in time_span_sample:
+                fname = np.random.choice(self.news_files)
+                array = np.load(os.path.join(directory_nd, fname))
+                arrays.append(array)
+            newsdatabase_sample = np.stack(arrays, axis=0)
+        else:
+            time_head = str(time_span_sample[0])[:10]
+            time_tail = str(time_span_sample[-1])[:10]
 
-        # transform time string to datetime
-        # get target time period
-        start_time = datetime.strptime(time_head, "%Y-%m-%d")
-        end_time = datetime.strptime(time_tail, "%Y-%m-%d")
+            start_time = datetime.strptime(time_head, "%Y-%m-%d")
+            end_time = datetime.strptime(time_tail, "%Y-%m-%d")
 
-        # walfk through directory，select .npy files in the target time period
-        npy_files = []
-        for f in os.listdir(directory_nd):
-            if not f.endswith('.npy'):
-                continue
+            npy_files = []
+            for f in os.listdir(directory_nd):
+                if not f.endswith('.npy'):
+                    continue
 
-            # extract time part in filename（"News-2016-10-20 00:00:00.npy" → "2016-10-20 00:00:00"）
-            time_part = f.replace("News-", "").replace(".npy", "")
-            file_time = datetime.strptime(time_part, "%Y-%m-%d")
+                time_part = f.replace("News-", "").replace(".npy", "")
+                file_time = datetime.strptime(time_part, "%Y-%m-%d")
 
-            # check time
-            if start_time <= file_time <= end_time:
-                npy_files.append(f)
+                if start_time <= file_time <= end_time:
+                    npy_files.append(f)
 
-        # sort according to time
-        npy_files.sort()
+            npy_files.sort()
 
-        # load .npy files selected
-        arrays = []
-        for npy_file in npy_files:
-            file_path = os.path.join(directory_nd, npy_file)
-            array = np.load(file_path)
-            arrays.append(array)
+            arrays = []
+            for npy_file in npy_files:
+                file_path = os.path.join(directory_nd, npy_file)
+                array = np.load(file_path)
+                arrays.append(array)
 
-        # stack into [N, M, D]
-        newsdatabase_sample = np.stack(arrays, axis=0)
+            newsdatabase_sample = np.stack(arrays, axis=0)
 
 
         return target_series_x, target_series_y, TS_database_sample, qt_samples_embeddings, des_embeddings, newsdatabase_sample
@@ -173,7 +187,7 @@ class Dataset_ReTaMTSF_Energy(Dataset):
 
 class Dataset_ReTaMTSF_Health_US(Dataset):
     def __init__(self, root_path, TS_data_path, QT_emb_path, Des_emb_path, NewsDatabase_path, flag,
-                 size, target_ids, scale, stride, num_data):
+                 size, target_ids, scale, stride, num_data, text_mode="retrieval"):
 
         # size [seq_len, pred_len, label_len]
 
@@ -198,6 +212,7 @@ class Dataset_ReTaMTSF_Health_US(Dataset):
         self.scale = scale
         self.stride = stride
         self.num_data = num_data
+        self.text_mode = text_mode
 
 
         self.__read_data__()
@@ -293,40 +308,53 @@ class Dataset_ReTaMTSF_Health_US(Dataset):
         des_embeddings = np.stack(des_embeddings,axis=0)
 
         directory_nd = os.path.join(self.root_path, self.NewsDatabase_path)
-        time_head = str(time_span_sample[0])
-        time_tail = str(time_span_sample[-1])
+        if self.text_mode == "aligned":
+            arrays = []
+            for point in time_span_sample:
+                time_str = str(point)[:10]
+                file_path = os.path.join(directory_nd, f"News-{time_str}.npy")
+                if os.path.exists(file_path):
+                    array = np.load(file_path)
+                else:
+                    array = np.zeros((1, 384), dtype=np.float32)
+                arrays.append(array)
+            newsdatabase_sample = np.stack(arrays, axis=0)
+        elif self.text_mode == "random":
+            if not hasattr(self, "news_files"):
+                self.news_files = [f for f in os.listdir(directory_nd) if f.endswith(".npy")]
+            arrays = []
+            for _ in time_span_sample:
+                fname = np.random.choice(self.news_files)
+                array = np.load(os.path.join(directory_nd, fname))
+                arrays.append(array)
+            newsdatabase_sample = np.stack(arrays, axis=0)
+        else:
+            time_head = str(time_span_sample[0])[:10]
+            time_tail = str(time_span_sample[-1])[:10]
 
-        # transform time string into datetime
-        # get target time period
-        start_time = datetime.strptime(time_head, "%Y-%m-%d")
-        end_time = datetime.strptime(time_tail, "%Y-%m-%d")
+            start_time = datetime.strptime(time_head, "%Y-%m-%d")
+            end_time = datetime.strptime(time_tail, "%Y-%m-%d")
 
-        # walk through directory，select .npy files in target time period
-        npy_files = []
-        for f in os.listdir(directory_nd):
-            if not f.endswith('.npy'):
-                continue
+            npy_files = []
+            for f in os.listdir(directory_nd):
+                if not f.endswith('.npy'):
+                    continue
 
-            # extract time part in filename（"News-2016-10-20 00:00:00.npy" → "2016-10-20 00:00:00"）
-            time_part = f.replace("News-", "").replace(".npy", "")
-            file_time = datetime.strptime(time_part, "%Y-%m-%d")
+                time_part = f.replace("News-", "").replace(".npy", "")
+                file_time = datetime.strptime(time_part, "%Y-%m-%d")
 
-            # check time
-            if start_time <= file_time <= end_time:
-                npy_files.append(f)
+                if start_time <= file_time <= end_time:
+                    npy_files.append(f)
 
-        # sort according to time
-        npy_files.sort()
+            npy_files.sort()
 
-        # load .npy files selected
-        arrays = []
-        for npy_file in npy_files:
-            file_path = os.path.join(directory_nd, npy_file)
-            array = np.load(file_path)
-            arrays.append(array)
+            arrays = []
+            for npy_file in npy_files:
+                file_path = os.path.join(directory_nd, npy_file)
+                array = np.load(file_path)
+                arrays.append(array)
 
-        # stack into [N, M, D]
-        newsdatabase_sample = np.stack(arrays, axis=0)
+            newsdatabase_sample = np.stack(arrays, axis=0)
 
 
         return target_series_x, target_series_y, TS_database_sample, qt_samples_embeddings, des_embeddings, newsdatabase_sample
@@ -339,7 +367,7 @@ class Dataset_ReTaMTSF_Health_US(Dataset):
 
 class Dataset_ReTaMTSF_Environment(Dataset):
     def __init__(self, root_path, TS_data_path, QT_emb_path, Des_emb_path, NewsDatabase_path, flag,
-                 size, target_ids, scale, stride, num_data):
+                 size, target_ids, scale, stride, num_data, text_mode="retrieval"):
 
         # size [seq_len, pred_len, label_len]
 
@@ -364,6 +392,7 @@ class Dataset_ReTaMTSF_Environment(Dataset):
         self.scale = scale
         self.stride = stride
         self.num_data = num_data
+        self.text_mode = text_mode
 
 
         self.__read_data__()
@@ -458,40 +487,53 @@ class Dataset_ReTaMTSF_Environment(Dataset):
         des_embeddings = np.stack(des_embeddings, axis=0)
 
         directory_nd = os.path.join(self.root_path, self.NewsDatabase_path)
-        time_head = str(time_span_sample[0])
-        time_tail = str(time_span_sample[-1])
+        if self.text_mode == "aligned":
+            arrays = []
+            for point in time_span_sample:
+                time_str = str(point)[:10]
+                file_path = os.path.join(directory_nd, f"News-{time_str}.npy")
+                if os.path.exists(file_path):
+                    array = np.load(file_path)
+                else:
+                    array = np.zeros((1, 384), dtype=np.float32)
+                arrays.append(array)
+            newsdatabase_sample = np.stack(arrays, axis=0)
+        elif self.text_mode == "random":
+            if not hasattr(self, "news_files"):
+                self.news_files = [f for f in os.listdir(directory_nd) if f.endswith(".npy")]
+            arrays = []
+            for _ in time_span_sample:
+                fname = np.random.choice(self.news_files)
+                array = np.load(os.path.join(directory_nd, fname))
+                arrays.append(array)
+            newsdatabase_sample = np.stack(arrays, axis=0)
+        else:
+            time_head = str(time_span_sample[0])[:10]
+            time_tail = str(time_span_sample[-1])[:10]
 
-        # transform time string into datetime
-        # get target time period
-        start_time = datetime.strptime(time_head, "%Y-%m-%d")
-        end_time = datetime.strptime(time_tail, "%Y-%m-%d")
+            start_time = datetime.strptime(time_head, "%Y-%m-%d")
+            end_time = datetime.strptime(time_tail, "%Y-%m-%d")
 
-        # walk through directory，select .npy files in target time period
-        npy_files = []
-        for f in os.listdir(directory_nd):
-            if not f.endswith('.npy'):
-                continue
+            npy_files = []
+            for f in os.listdir(directory_nd):
+                if not f.endswith('.npy'):
+                    continue
 
-            # extract time part in filename（"News-2016-10-20 00:00:00.npy" → "2016-10-20 00:00:00"）
-            time_part = f.replace("News-", "").replace(".npy", "")
-            file_time = datetime.strptime(time_part, "%Y-%m-%d")
+                time_part = f.replace("News-", "").replace(".npy", "")
+                file_time = datetime.strptime(time_part, "%Y-%m-%d")
 
-            # check time
-            if start_time <= file_time <= end_time:
-                npy_files.append(f)
+                if start_time <= file_time <= end_time:
+                    npy_files.append(f)
 
-        # sort according to time
-        npy_files.sort()
+            npy_files.sort()
 
-        # load .npy files selected
-        arrays = []
-        for npy_file in npy_files:
-            file_path = os.path.join(directory_nd, npy_file)
-            array = np.load(file_path)
-            arrays.append(array)
+            arrays = []
+            for npy_file in npy_files:
+                file_path = os.path.join(directory_nd, npy_file)
+                array = np.load(file_path)
+                arrays.append(array)
 
-        # stack into [N, M, D]
-        newsdatabase_sample = np.stack(arrays, axis=0)
+            newsdatabase_sample = np.stack(arrays, axis=0)
 
         return target_series_x, target_series_y, TS_database_sample, qt_samples_embeddings, des_embeddings, newsdatabase_sample
 
@@ -503,7 +545,7 @@ class Dataset_ReTaMTSF_Environment(Dataset):
 
 class Dataset_ReTaMTSF_Climate(Dataset):
     def __init__(self, root_path, TS_data_path, QT_emb_path, Des_emb_path, NewsDatabase_path, flag,
-                 size, target_ids, scale, stride, num_data):
+                 size, target_ids, scale, stride, num_data, text_mode="retrieval"):
 
         # size [seq_len, pred_len, label_len]
 
@@ -528,6 +570,7 @@ class Dataset_ReTaMTSF_Climate(Dataset):
         self.scale = scale
         self.stride = stride
         self.num_data = num_data
+        self.text_mode = text_mode
 
 
         self.__read_data__()
@@ -622,40 +665,53 @@ class Dataset_ReTaMTSF_Climate(Dataset):
         des_embeddings = np.stack(des_embeddings,axis=0)
 
         directory_nd = os.path.join(self.root_path, self.NewsDatabase_path)
-        time_head = str(time_span_sample[0])
-        time_tail = str(time_span_sample[-1])
+        if self.text_mode == "aligned":
+            arrays = []
+            for point in time_span_sample:
+                time_str = str(point)[:10]
+                file_path = os.path.join(directory_nd, f"News-{time_str}.npy")
+                if os.path.exists(file_path):
+                    array = np.load(file_path)
+                else:
+                    array = np.zeros((1, 384), dtype=np.float32)
+                arrays.append(array)
+            newsdatabase_sample = np.stack(arrays, axis=0)
+        elif self.text_mode == "random":
+            if not hasattr(self, "news_files"):
+                self.news_files = [f for f in os.listdir(directory_nd) if f.endswith(".npy")]
+            arrays = []
+            for _ in time_span_sample:
+                fname = np.random.choice(self.news_files)
+                array = np.load(os.path.join(directory_nd, fname))
+                arrays.append(array)
+            newsdatabase_sample = np.stack(arrays, axis=0)
+        else:
+            time_head = str(time_span_sample[0])[:10]
+            time_tail = str(time_span_sample[-1])[:10]
 
-        # transformer time string into datetime
-        #get target time periof
-        start_time = datetime.strptime(time_head, "%Y-%m-%d")
-        end_time = datetime.strptime(time_tail, "%Y-%m-%d")
+            start_time = datetime.strptime(time_head, "%Y-%m-%d")
+            end_time = datetime.strptime(time_tail, "%Y-%m-%d")
 
-        # walk through directory，select .npy files in target time period
-        npy_files = []
-        for f in os.listdir(directory_nd):
-            if not f.endswith('.npy'):
-                continue
+            npy_files = []
+            for f in os.listdir(directory_nd):
+                if not f.endswith('.npy'):
+                    continue
 
-            # extract time part in filename ("ews-2016-10-20 00:00:00.npy" → "2016-10-20 00:00:00"）
-            time_part = f.replace("News-", "").replace(".npy", "")
-            file_time = datetime.strptime(time_part, "%Y-%m-%d")
+                time_part = f.replace("News-", "").replace(".npy", "")
+                file_time = datetime.strptime(time_part, "%Y-%m-%d")
 
-            # check time
-            if start_time <= file_time <= end_time:
-                npy_files.append(f)
+                if start_time <= file_time <= end_time:
+                    npy_files.append(f)
 
-        # sort according to time
-        npy_files.sort()
+            npy_files.sort()
 
-        # load .npy files selected
-        arrays = []
-        for npy_file in npy_files:
-            file_path = os.path.join(directory_nd, npy_file)
-            array = np.load(file_path)
-            arrays.append(array)
+            arrays = []
+            for npy_file in npy_files:
+                file_path = os.path.join(directory_nd, npy_file)
+                array = np.load(file_path)
+                arrays.append(array)
 
-        # stack into [N, M, D]
-        newsdatabase_sample = np.stack(arrays, axis=0)
+            newsdatabase_sample = np.stack(arrays, axis=0)
 
 
         return target_series_x, target_series_y, TS_database_sample, qt_samples_embeddings, des_embeddings, newsdatabase_sample

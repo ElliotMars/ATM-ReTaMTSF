@@ -1,3 +1,4 @@
+import torch
 from torch import nn
 from layers.ReTaMTSFLayers import TS_CoherAnalysis, ContentSynthesis, TextCrossAttention, CrossandOutput
 
@@ -16,8 +17,18 @@ class Model(nn.Module):
         #Time Series
         ref_TS = self.TS_CoherAnalysis(target_series, TS_database)#[B, C_T*K_T, L]
         TS_Synthesis, TS, TS_emb = self.ContentSynthesis(target_series, ref_TS) #[B, C_T*(K_T+1), L, D]
-        #Text
-        Text_Synthesis = self.TextCrossAttention(qt, des, newsdatabase)#[B, C_T*K_n, H, D]
+
+        #Text - skip TextCrossAttention if ablation=1 to save computation and memory
+        if self.configs.ablation:
+            # Create zero tensor with same shape as Text_Synthesis output [B, C_T*K_n, H, D]
+            B, C_T, L = target_series.shape
+            K_n = self.configs.nref_text
+            H = self.configs.pred_len
+            D = 384  # embedding dimension
+            device = TS_Synthesis.device
+            Text_Synthesis = torch.zeros((B, C_T * K_n, H, D), device=device)
+        else:
+            Text_Synthesis = self.TextCrossAttention(qt, des, newsdatabase)#[B, C_T*K_n, H, D]
 
         #Cross and Output
         prediction, temp_emb, text_emb = self.CrossandOutput(Text_Synthesis, TS_Synthesis) #[B, C_T, H]

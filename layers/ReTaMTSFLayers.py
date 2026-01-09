@@ -2,6 +2,11 @@ import torch
 from torch import nn
 from utils.Positional_Embedding import positional_encoding
 from utils.Coherence_Compute import vectorized_compute_coherence
+from utils.Correlation_Compute import (
+    compute_lagged_corr,
+    compute_partial_corr,
+    compute_granger_score,
+)
 
 class TS_CoherAnalysis(nn.Module):
     def __init__(self, configs):
@@ -10,6 +15,9 @@ class TS_CoherAnalysis(nn.Module):
 
     def forward(self, target_series, TS_database):
         nperseg = self.configs.nperseg
+        retrieval_mode = getattr(self.configs, "ts_retrieval", "coherence")
+        max_lag = getattr(self.configs, "max_lag", 12)
+        granger_lag = getattr(self.configs, "granger_lag", 3)
         B, C_T, L = target_series.shape
         if self.configs.nref >= TS_database.size(1):
             topk_sequences = TS_database.repeat(1, C_T, 1)
@@ -18,7 +26,16 @@ class TS_CoherAnalysis(nn.Module):
             topk_sequences = torch.concat([topk_sequences, padding], dim=1)
             return topk_sequences
         #target_series = target_series.view(B * C_T, L)  # Flatten target_series for batch processing
-        coherence_scores = vectorized_compute_coherence(target_series, TS_database, nperseg)
+        if retrieval_mode == "coherence":
+            coherence_scores = vectorized_compute_coherence(target_series, TS_database, nperseg)
+        elif retrieval_mode == "lagged_corr":
+            coherence_scores = compute_lagged_corr(target_series, TS_database, max_lag=max_lag)
+        elif retrieval_mode == "partial_corr":
+            coherence_scores = compute_partial_corr(target_series, TS_database)
+        elif retrieval_mode == "granger":
+            coherence_scores = compute_granger_score(target_series, TS_database, lag=granger_lag)
+        else:
+            raise ValueError(f"Unknown ts_retrieval mode: {retrieval_mode}")
 
         # Reshape coherence_scores back to (B, C_T, 21 - C_T)
         coherence_scores = coherence_scores.view(B, C_T, TS_database.size(1))
@@ -156,6 +173,7 @@ class TextCrossAttention(nn.Module):
         self.K_n = configs.nref_text
         self.K_n_qt = configs.qt_ref_text
         self.pred_len = configs.pred_len
+        self.text_mode = getattr(configs, "text_mode", "retrieval")
         cross_encoder_layer = nn.TransformerDecoderLayer(d_model=nd_embedding_dim,
                                                          nhead=n_heads,
                                                          dropout=configs.dropout_rate,
@@ -222,39 +240,50 @@ class TextCrossAttention(nn.Module):
         B, C_T, H, D = qt_emb.shape
         _, N, M, _ = nd_emb.shape
 
+        if self.text_mode in {"aligned", "random"}:
+            # Expect nd_emb as [B, H, 1, D] or [B, N, 1, D]; align to H
+            if N < H:
+                pad = torch.zeros((B, H - N, M, D), device=nd_emb.device, dtype=nd_emb.dtype)
+                nd_emb = torch.cat([nd_emb, pad], dim=1)
+            elif N > H:
+                nd_emb = nd_emb[:, :H, :, :]
+
+            aligned = nd_emb.squeeze(2)  # [B, H, D]
+            aligned = aligned.unsqueeze(1).unsqueeze(1)  # [B, 1, 1, H, D]
+            aligned = aligned.expand(B, C_T, self.K_n, H, D)
+            return aligned.reshape(B, C_T * self.K_n, H, D)
+
         # similarity matrix [B, C_T, H, N]
         similarity = torch.matmul(qt_emb.transpose(1, 2),
                                   nd_emb.transpose(1, 2).transpose(2, 3)).permute(0, 2, 1, 3)
 
-        # get Top-Kn index [B, C_T, H, Kn]
-        _, topk_indices = torch.topk(similarity, k=self.K_n_qt, dim=-1, sorted=True)
+        # Use self.K_n for all selections since qt_ref_text = nref_text in our setup
+        # This ensures K_n items are selected from query-text similarity
+        k_qt = min(self.K_n, N)  # Ensure k doesn't exceed database size
+        _, topk_indices = torch.topk(similarity, k=k_qt, dim=-1, sorted=True)
 
-        # generate index template [B, C_T, H, Kn, 1, 1] ->  [B, C_T, H, Kn, M, D]
-        expand_dims = (B, C_T, H, self.K_n_qt, M, D)
-        topk_indices = topk_indices.view(B, C_T, H, self.K_n_qt, 1, 1).expand(expand_dims)
+        # generate index template [B, C_T, H, k_qt, 1, 1] ->  [B, C_T, H, k_qt, M, D]
+        expand_dims = (B, C_T, H, k_qt, M, D)
+        topk_indices = topk_indices.view(B, C_T, H, k_qt, 1, 1).expand(expand_dims)
 
-        # from nd_emb gather [B, C_T, H, Kn, M, D]
+        # from nd_emb gather [B, C_T, H, k_qt, M, D]
         selected_qt = nd_emb.unsqueeze(1).unsqueeze(2).repeat(1, C_T, self.pred_len, 1, 1, 1).gather(  # add K and H dimension, get M dimension
             dim=3,  # gather on N dimension
             index=topk_indices
         )
 
-        # rearrange into [B, C_T, K_n, H, D]
-        selected_qt = selected_qt.squeeze(-2).permute(0, 1, 3, 2, 4)  # [B, C_T, K_n, H, D]
+        # rearrange into [B, C_T, k_qt, H, D]
+        selected_qt = selected_qt.squeeze(-2).permute(0, 1, 3, 2, 4)  # [B, C_T, k_qt, H, D]
 
-        similarity = torch.matmul(des_emb.transpose(1, 2),
-                                  nd_emb.transpose(1, 2).transpose(2, 3)).permute(0, 2, 1, 3)
-        _, topk_indices = torch.topk(similarity, k=self.K_n-self.K_n_qt, dim=-1, sorted=True)
-        expand_dims = (B, C_T, H, self.K_n-self.K_n_qt, M, D)
-        topk_indices = topk_indices.view(B, C_T, 1, self.K_n-self.K_n_qt, 1, 1).expand(expand_dims)
-        selected_des = nd_emb.unsqueeze(1).unsqueeze(2).repeat(1, C_T, self.pred_len, 1, 1, 1).gather(  # add K and H dimension, get M dimension
-            dim=3,  # gather on N dimension
-            index=topk_indices
-        )
+        # Since qt_ref_text = nref_text, all items come from query-text similarity
+        selected = selected_qt  # [B, C_T, k_qt, H, D]
 
-        selected_des = selected_des.squeeze(-2).permute(0, 1, 3, 2, 4)  # [B, C_T, K_n, H, D]
-
-        selected = torch.cat([selected_qt, selected_des], dim=2)
+        # If k_qt < K_n (database smaller than requested), pad with repeated samples
+        if k_qt < self.K_n:
+            # Calculate how many times to repeat and how many to take
+            repeat_times = (self.K_n + k_qt - 1) // k_qt  # Ceiling division
+            # Repeat the selected items and take first K_n
+            selected = selected.repeat(1, 1, repeat_times, 1, 1)[:, :, :self.K_n, :, :]
 
         return selected.reshape(B, C_T*self.K_n, H, D)
 
@@ -264,6 +293,8 @@ class CrossandOutput(nn.Module):
         super(CrossandOutput, self).__init__()
 
         self.ablation = configs.ablation
+        self.K_T = configs.nref
+        self.H = configs.pred_len
 
         cross_encoder_layer = nn.TransformerDecoderLayer(d_model=temp_embedding_dim,
                                                          nhead=n_heads,
@@ -318,6 +349,29 @@ class CrossandOutput(nn.Module):
 
     def forward(self, text_emb, temp_emb):#text_emb[B, C_T*K_n, H, D] temp_emb[B, C_T*(K_T+1), L, D]
         B, C_Tmul_K_Tplus1_, L, D_temp = temp_emb.shape #C=K_temp_plus1
+        temp_emb_out = temp_emb
+
+        # Ablation mode: skip text cross-attention, use only time series features
+        if self.ablation:
+            # Extract label portion and apply TS self-attention
+            label = temp_emb[:, :, -self.label_len:, :].reshape(B * C_Tmul_K_Tplus1_, self.label_len, D_temp)
+            label = self.TS_self_attention(tgt=label, memory=label)
+            label = label.reshape(B, C_Tmul_K_Tplus1_, self.label_len, D_temp)
+
+            # For ablation: use only time series, pad to match prediction length
+            # Take only the last H timesteps from temp_emb (after label)
+            result = temp_emb[:, :, -self.H:, :]  # [B, C_T*(K_T+1), H, D]
+
+            # Dimension reducer: [B, C_T*(K_T+1), H, D] -> [B, C_T, H, D]
+            result = self.dimension_reducer(result)
+            result = self.mlp(result).squeeze(-1)  # [B, C_T, H]
+
+            # Return dummy zero tensor for text_emb_out
+            text_emb_out = torch.zeros_like(temp_emb[:, :, :self.H, :])
+
+            return result, temp_emb_out, text_emb_out
+
+        # Multimodal mode: original cross-attention with text
         _, C_Tmul_K_n, H, D_text = text_emb.shape#C=K_text
         if C_Tmul_K_Tplus1_ > C_Tmul_K_n:
             channel_align = nn.Linear(C_Tmul_K_n, C_Tmul_K_Tplus1_).to(text_emb.device)
@@ -330,24 +384,13 @@ class CrossandOutput(nn.Module):
         else:
             pass
 
-        temp_emb_out = temp_emb
         text_emb_out = text_emb
-
-        if self.ablation:
-            text_emb.zero_()
 
         label = temp_emb[:, :, -self.label_len:, :].reshape(B * C_Tmul_K_Tplus1_, self.label_len, D_temp)
         label = self.TS_self_attention(tgt=label, memory=label)
         label = label.reshape(B, C_Tmul_K_Tplus1_, self.label_len, D_temp)
 
         query_emb = torch.cat((label, text_emb), dim=2)#[B, C_T*(K_T+1), L+H, D]
-
-        #temp_emb = self.length_reducer(temp_emb.permute(0, 1, 3, 2)).permute(0, 1, 3, 2)
-        # temp_emb = temp_emb[:, :, -H:, :]
-        # temp_emb = self.dimension_reducer(temp_emb)
-        # temp_emb = self.mlp(temp_emb).squeeze(-1)
-        #
-        # return temp_emb, temp_emb_out, text_emb_out
 
         value_emb = temp_emb.reshape(B * C_Tmul_K_Tplus1_, L, D_temp)
         query_emb = query_emb.reshape(B * C_Tmul_K_Tplus1_, self.label_len + H, D_text)
@@ -360,7 +403,6 @@ class CrossandOutput(nn.Module):
         result = result.view(B, C_Tmul_K_Tplus1_, -1, D_temp)
 
         result = result[:, :, -H:, :]
-        #result = self.length_reducer(result.permute(0, 1, 3, 2)).permute(0, 1, 3, 2)
         result = self.dimension_reducer(result)#[B, C_T, L+H, D]
         result = self.mlp(result).squeeze(-1)#[B, C_T, L+H, 1]->[B, C_T, L+H]
 
@@ -379,10 +421,7 @@ class DimensionReducer(nn.Module):
         )
         self.transformer = nn.TransformerEncoder(encoder_layer, num_layers)
 
-        self.K_n = configs.nref_text
-        self.K_T = configs.nref
-        # channel reducer
-        self.channel_reducer = nn.Linear(max(self.K_n, self.K_T+1), 1)
+        # No channel reducer needed - we'll use mean pooling directly
 
     def forward(self, x):
         """
@@ -391,8 +430,13 @@ class DimensionReducer(nn.Module):
         """
         B, C_Tmul_K_Tplus1_, LplusH, D = x.shape
 
+        # Dynamically compute C_T and K_Tplus1 from input shape
+        # C_T is assumed to be 1 for single-variable forecasting
+        C_T = 1
+        K_Tplus1 = C_Tmul_K_Tplus1_ // C_T
+
         # step1: channel dimension preprocess
-        x_reshaped = x.permute(0, 2, 1, 3)  # [B, L+H, C_T*(K_T+1)， D]
+        x_reshaped = x.permute(0, 2, 1, 3)  # [B, L+H, C_T*(K_T+1), D]
         x_reshaped = x_reshaped.reshape(B, LplusH * C_Tmul_K_Tplus1_, D)
 
         # step2: Transformer
@@ -402,12 +446,16 @@ class DimensionReducer(nn.Module):
         # [B, L, C_T*(K_T+1), D]
         recovered = transformer_out.view(B, LplusH, C_Tmul_K_Tplus1_, D)
 
-        # step4: channel reducer
-        # [B, C_T*(K_T+1), L+H, D] -> [B, D, L+H, C_T*(K_T+1)]
-        recovered = recovered.permute(0, 1, 3, 2).view(B, LplusH, D, -1, max(self.K_n, self.K_T+1))  # [B, D, L+H, C_T, (K_T+1)]
+        # step4: channel reducer using mean pooling
+        # [B, C_T*(K_T+1), L+H, D] -> [B, L+H, D, C_T*(K_T+1)]
+        recovered = recovered.permute(0, 1, 3, 2)  # [B, L+H, D, C_T*(K_T+1)]
 
-        squeezed = self.channel_reducer(recovered)  # [B, L+H, D, C_T, 1]
+        # Reshape to [B, L+H, D, C_T, K_Tplus1] using dynamically computed K_Tplus1
+        recovered = recovered.view(B, LplusH, D, C_T, K_Tplus1)  # [B, L+H, D, C_T, (K_T+1)]
 
-        # [B, D, L+H, C_T, 1] -> [B, C_T, L+H, D, 1]
+        # Apply mean pooling over the K_Tplus1 dimension to reduce it to 1
+        squeezed = recovered.mean(dim=-1, keepdim=True)  # [B, L+H, D, C_T, 1]
+
+        # [B, L+H, D, C_T, 1] -> [B, C_T, L+H, D]
         reduced = squeezed.permute(0, 3, 1, 2, 4).squeeze(-1)  # [B, C_T, L+H, D]
         return reduced
