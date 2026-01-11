@@ -1,7 +1,5 @@
 # Retrieval-based Text-augmented Multivariate Time Series Forecasting
 
-> This repository contains the code for the paper submitted to ICLR 2026, which proposes a new method for multimodal multivariate time series forecasting.
-
 ---
 
 ## Usage

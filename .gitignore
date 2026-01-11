@@ -2483,3 +2483,40 @@ analysis_results/timemmd_diagnostics_20260105_073023/Health_US_WEIGHTED ILI_hete
 analysis_results/timemmd_diagnostics_20260105_073023/Health_US_WEIGHTED ILI_heteroscedastic_1120_1248.pdf
 analysis_results/timemmd_diagnostics_20260105_073023/Health_US_WEIGHTED ILI_heteroscedastic_1136_1264.pdf
 analysis_results/timemmd_diagnostics_20260105_073023/Health_US_WEIGHTED ILI_heteroscedastic_1168_1296.pdf
+ts_retrieval/Energy_lagged_corr_H12.log
+ts_retrieval/run_info.txt
+ts_retrieval/summary.csv
+checkpoints/0111_123416_Target_Gasoline Prices-Gasoline Prices SeqLen_36 PredLen_12 Train_1 GPU_True Kt_5 Kn6 Naggregation_3 Nperseg_18 LR_0.0001 Itr_1 bs_32/Gasoline Prices_best_checkpoint.pth
+checkpoints/0111_125344_Target_Gasoline Prices-Gasoline Prices SeqLen_36 PredLen_12 Train_1 GPU_True Kt_5 Kn6 Naggregation_3 Nperseg_18 LR_0.0001 Itr_1 bs_32/Gasoline Prices_best_checkpoint.pth
+dataset/Time-MMD
+test_results/0111_125309_Target_Gasoline Prices-Gasoline Prices SeqLen_36 PredLen_12 Train_1 GPU_True Kt_5 Kn6 Naggregation_3 Nperseg_18 LR_0.0001 Itr_1 bs_32/Gasoline Prices_0.pdf
+test_results/0111_125309_Target_Gasoline Prices-Gasoline Prices SeqLen_36 PredLen_12 Train_1 GPU_True Kt_5 Kn6 Naggregation_3 Nperseg_18 LR_0.0001 Itr_1 bs_32/Gasoline Prices_1.pdf
+test_results/0111_125309_Target_Gasoline Prices-Gasoline Prices SeqLen_36 PredLen_12 Train_1 GPU_True Kt_5 Kn6 Naggregation_3 Nperseg_18 LR_0.0001 Itr_1 bs_32/Gasoline Prices_2.pdf
+test_results/0111_125309_Target_Gasoline Prices-Gasoline Prices SeqLen_36 PredLen_12 Train_1 GPU_True Kt_5 Kn6 Naggregation_3 Nperseg_18 LR_0.0001 Itr_1 bs_32/Gasoline Prices_3.pdf
+test_results/0111_125309_Target_Gasoline Prices-Gasoline Prices SeqLen_36 PredLen_12 Train_1 GPU_True Kt_5 Kn6 Naggregation_3 Nperseg_18 LR_0.0001 Itr_1 bs_32/Gasoline Prices_4.pdf
+test_results/0111_125309_Target_Gasoline Prices-Gasoline Prices SeqLen_36 PredLen_12 Train_1 GPU_True Kt_5 Kn6 Naggregation_3 Nperseg_18 LR_0.0001 Itr_1 bs_32/Gasoline Prices_5.pdf
+test_results/0111_125309_Target_Gasoline Prices-Gasoline Prices SeqLen_36 PredLen_12 Train_1 GPU_True Kt_5 Kn6 Naggregation_3 Nperseg_18 LR_0.0001 Itr_1 bs_32/Gasoline Prices_6.pdf
+test_results/0111_125309_Target_Gasoline Prices-Gasoline Prices SeqLen_36 PredLen_12 Train_1 GPU_True Kt_5 Kn6 Naggregation_3 Nperseg_18 LR_0.0001 Itr_1 bs_32/Gasoline Prices_7.pdf
+test_results/0111_125309_Target_Gasoline Prices-Gasoline Prices SeqLen_36 PredLen_12 Train_1 GPU_True Kt_5 Kn6 Naggregation_3 Nperseg_18 LR_0.0001 Itr_1 bs_32/Gasoline Prices_8.pdf
+test_results/0111_125309_Target_Gasoline Prices-Gasoline Prices SeqLen_36 PredLen_12 Train_1 GPU_True Kt_5 Kn6 Naggregation_3 Nperseg_18 LR_0.0001 Itr_1 bs_32/Gasoline Prices_9.pdf
+test_results/0111_125309_Target_Gasoline Prices-Gasoline Prices SeqLen_36 PredLen_12 Train_1 GPU_True Kt_5 Kn6 Naggregation_3 Nperseg_18 LR_0.0001 Itr_1 bs_32/Gasoline Prices_pred.npy
+test_results/0111_125309_Target_Gasoline Prices-Gasoline Prices SeqLen_36 PredLen_12 Train_1 GPU_True Kt_5 Kn6 Naggregation_3 Nperseg_18 LR_0.0001 Itr_1 bs_32/Gasoline Prices_trues.npy
+test_results/0111_125309_Target_Gasoline Prices-Gasoline Prices SeqLen_36 PredLen_12 Train_1 GPU_True Kt_5 Kn6 Naggregation_3 Nperseg_18 LR_0.0001 Itr_1 bs_32/Gasoline Prices_x.npy
+test_results/0111_125309_Target_Gasoline Prices-Gasoline Prices SeqLen_36 PredLen_12 Train_1 GPU_True Kt_5 Kn6 Naggregation_3 Nperseg_18 LR_0.0001 Itr_1 bs_32/result.txt
+test_results/0111_130631_Target_Gasoline Prices-Gasoline Prices SeqLen_36 PredLen_12 Train_1 GPU_True Kt_5 Kn6 Naggregation_3 Nperseg_18 LR_0.0001 Itr_1 bs_32/Gasoline Prices_0.pdf
+test_results/0111_130631_Target_Gasoline Prices-Gasoline Prices SeqLen_36 PredLen_12 Train_1 GPU_True Kt_5 Kn6 Naggregation_3 Nperseg_18 LR_0.0001 Itr_1 bs_32/Gasoline Prices_1.pdf
+test_results/0111_130631_Target_Gasoline Prices-Gasoline Prices SeqLen_36 PredLen_12 Train_1 GPU_True Kt_5 Kn6 Naggregation_3 Nperseg_18 LR_0.0001 Itr_1 bs_32/Gasoline Prices_2.pdf
+test_results/0111_130631_Target_Gasoline Prices-Gasoline Prices SeqLen_36 PredLen_12 Train_1 GPU_True Kt_5 Kn6 Naggregation_3 Nperseg_18 LR_0.0001 Itr_1 bs_32/Gasoline Prices_3.pdf
+test_results/0111_130631_Target_Gasoline Prices-Gasoline Prices SeqLen_36 PredLen_12 Train_1 GPU_True Kt_5 Kn6 Naggregation_3 Nperseg_18 LR_0.0001 Itr_1 bs_32/Gasoline Prices_4.pdf
+test_results/0111_130631_Target_Gasoline Prices-Gasoline Prices SeqLen_36 PredLen_12 Train_1 GPU_True Kt_5 Kn6 Naggregation_3 Nperseg_18 LR_0.0001 Itr_1 bs_32/Gasoline Prices_5.pdf
+test_results/0111_130631_Target_Gasoline Prices-Gasoline Prices SeqLen_36 PredLen_12 Train_1 GPU_True Kt_5 Kn6 Naggregation_3 Nperseg_18 LR_0.0001 Itr_1 bs_32/Gasoline Prices_6.pdf
+test_results/0111_130631_Target_Gasoline Prices-Gasoline Prices SeqLen_36 PredLen_12 Train_1 GPU_True Kt_5 Kn6 Naggregation_3 Nperseg_18 LR_0.0001 Itr_1 bs_32/Gasoline Prices_7.pdf
+test_results/0111_130631_Target_Gasoline Prices-Gasoline Prices SeqLen_36 PredLen_12 Train_1 GPU_True Kt_5 Kn6 Naggregation_3 Nperseg_18 LR_0.0001 Itr_1 bs_32/Gasoline Prices_8.pdf
+test_results/0111_130631_Target_Gasoline Prices-Gasoline Prices SeqLen_36 PredLen_12 Train_1 GPU_True Kt_5 Kn6 Naggregation_3 Nperseg_18 LR_0.0001 Itr_1 bs_32/Gasoline Prices_9.pdf
+test_results/0111_130631_Target_Gasoline Prices-Gasoline Prices SeqLen_36 PredLen_12 Train_1 GPU_True Kt_5 Kn6 Naggregation_3 Nperseg_18 LR_0.0001 Itr_1 bs_32/Gasoline Prices_pred.npy
+test_results/0111_130631_Target_Gasoline Prices-Gasoline Prices SeqLen_36 PredLen_12 Train_1 GPU_True Kt_5 Kn6 Naggregation_3 Nperseg_18 LR_0.0001 Itr_1 bs_32/Gasoline Prices_trues.npy
+test_results/0111_130631_Target_Gasoline Prices-Gasoline Prices SeqLen_36 PredLen_12 Train_1 GPU_True Kt_5 Kn6 Naggregation_3 Nperseg_18 LR_0.0001 Itr_1 bs_32/Gasoline Prices_x.npy
+test_results/0111_130631_Target_Gasoline Prices-Gasoline Prices SeqLen_36 PredLen_12 Train_1 GPU_True Kt_5 Kn6 Naggregation_3 Nperseg_18 LR_0.0001 Itr_1 bs_32/result.txt
+text_mode_text_models/Energy_all-MiniLM-L6-v2_H12.log
+text_mode_text_models/run_info.txt
+text_mode_text_models/summary.csv

@@ -8,7 +8,8 @@ export PATH=/opt/conda/bin:$PATH
 export OLLAMA_MODELS=/opt/data/private/ollama-models/
 export OLLAMA_HOST=0.0.0.0:11434
 export HF_ENDPOINT=https://hf-mirror.com
-export CUDA_VISIBLE_DEVICES=0,1,2,3
+# Run on a single GPU by default (override by exporting CUDA_VISIBLE_DEVICES).
+export CUDA_VISIBLE_DEVICES="${CUDA_VISIBLE_DEVICES:-0}"
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
@@ -106,9 +107,7 @@ for dataset in "${DATASETS[@]}"; do
                 --pct_start 0.3 \
                 --lradj 'type3' \
                 --use_gpu True \
-                --devices '0,1,2,3' \
                 --gpu 0 \
-                --use_multi_gpu \
                 --text_mode "retrieval" \
                 --ts_retrieval "${ts_retrieval}" \
                 --max_lag 12 \
@@ -151,9 +150,7 @@ for dataset in "${DATASETS[@]}"; do
                 --pct_start 0.3 \
                 --lradj 'type3' \
                 --use_gpu True \
-                --devices '0,1,2,3' \
                 --gpu 0 \
-                --use_multi_gpu \
                 --text_mode "retrieval" \
                 --ts_retrieval "${ts_retrieval}" \
                 --max_lag 12 \
@@ -196,9 +193,7 @@ for dataset in "${DATASETS[@]}"; do
                 --pct_start 0.3 \
                 --lradj 'type3' \
                 --use_gpu True \
-                --devices '0,1,2,3' \
                 --gpu 0 \
-                --use_multi_gpu \
                 --text_mode "retrieval" \
                 --ts_retrieval "${ts_retrieval}" \
                 --max_lag 12 \
@@ -241,9 +236,7 @@ for dataset in "${DATASETS[@]}"; do
                 --pct_start 0.3 \
                 --lradj 'type3' \
                 --use_gpu True \
-                --devices '0,1,2,3' \
                 --gpu 0 \
-                --use_multi_gpu \
                 --text_mode "retrieval" \
                 --ts_retrieval "${ts_retrieval}" \
                 --max_lag 12 \
