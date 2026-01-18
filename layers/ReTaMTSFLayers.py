@@ -37,8 +37,11 @@ class TS_CoherAnalysis(nn.Module):
         else:
             raise ValueError(f"Unknown ts_retrieval mode: {retrieval_mode}")
 
-        # Reshape coherence_scores back to (B, C_T, 21 - C_T)
-        coherence_scores = coherence_scores.view(B, C_T, TS_database.size(1))
+        # Normalize output shape to [B, C_T, C_D] for different retrieval functions.
+        # Some implementations may return extra dimensions (e.g. per-lag/per-frequency scores);
+        # we reduce those extra dimensions by mean to obtain one score per database channel.
+        C_D = TS_database.size(1)
+        coherence_scores = coherence_scores.reshape(B, C_T, C_D, -1).mean(dim=-1)
 
         # Select topk coherence scores and their corresponding indices
         _, topk_indices = torch.topk(coherence_scores, k=self.configs.nref, dim=2)

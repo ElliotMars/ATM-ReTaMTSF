@@ -29,6 +29,7 @@ conda activate /opt/data/private/envs/ReTaMTSF
 
 PYTHON=/opt/data/private/envs/ReTaMTSF/bin/python
 ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+cd "${ROOT_DIR}"
 
 RESULTS_DIR="${ROOT_DIR}/text_mode_text_models"
 mkdir -p "${RESULTS_DIR}"
@@ -61,12 +62,34 @@ run_and_collect() {
 
   local log_file="${RESULTS_DIR}/${dataset}_${text_model}_H${pred_len}.log"
   echo "Running ${dataset} | model=${text_model} | pred_len=${pred_len}"
-  "${cmd[@]}" > "${log_file}" 2>&1
+  if ! "${cmd[@]}" > "${log_file}" 2>&1; then
+    echo "Command failed. Last 50 lines of log: ${log_file}"
+    tail -n 50 "${log_file}"
+    return 1
+  fi
 
   local latest_dir
-  latest_dir="$(ls -td ./test_results/* | head -n 1)"
+  if [[ ! -d "${ROOT_DIR}/test_results" ]]; then
+    echo "Missing test_results directory at ${ROOT_DIR}/test_results"
+    echo "Last 50 lines of log: ${log_file}"
+    tail -n 50 "${log_file}"
+    return 1
+  fi
+  latest_dir="$(ls -td "${ROOT_DIR}"/test_results/* 2>/dev/null | head -n 1 || true)"
+  if [[ -z "${latest_dir}" ]]; then
+    echo "No test_results subdirectory found under ${ROOT_DIR}/test_results"
+    echo "Last 50 lines of log: ${log_file}"
+    tail -n 50 "${log_file}"
+    return 1
+  fi
   local result_file="${latest_dir}/result.txt"
   local out_copy="${RESULTS_DIR}/${dataset}_${text_model}_H${pred_len}_result.txt"
+  if [[ ! -f "${result_file}" ]]; then
+    echo "Missing result file: ${result_file}"
+    echo "Last 50 lines of log: ${log_file}"
+    tail -n 50 "${log_file}"
+    return 1
+  fi
   cp "${result_file}" "${out_copy}"
 
   local line

@@ -44,11 +44,12 @@ def compute_lagged_corr(target: torch.Tensor,
 
         x_centered = x - x.mean(dim=-1, keepdim=True)
         y_centered = y - y.mean(dim=-1, keepdim=True)
-        x_std = x_centered.pow(2).mean(dim=-1, keepdim=True).sqrt() + eps
-        y_std = y_centered.pow(2).mean(dim=-1, keepdim=True).sqrt() + eps
+        x_std = x_centered.pow(2).mean(dim=-1, keepdim=True).sqrt() + eps  # [B, C_T, 1]
+        y_std = y_centered.pow(2).mean(dim=-1, keepdim=True).sqrt() + eps  # [B, C_D, 1]
 
         corr = torch.einsum("bcl,bdl->bcd", x_centered, y_centered)
-        corr = corr / (L_lag * x_std * y_std)
+        denom = (x_std * y_std.transpose(1, 2)).clamp_min(eps)  # [B, C_T, C_D]
+        corr = corr / (L_lag * denom)
         scores.append(corr.abs())
 
     if not scores:
