@@ -1,0 +1,34 @@
+{
+  "root": "dataset/Time-MMD",
+  "domains": [
+    {
+      "domain": "Energy",
+      "raw_csvs": [],
+      "embedding_files": 0,
+      "status": "raw_data_missing",
+      "strict_backtest_ready": false
+    },
+    {
+      "domain": "Health_US",
+      "raw_csvs": [],
+      "embedding_files": 0,
+      "status": "raw_data_missing",
+      "strict_backtest_ready": false
+    },
+    {
+      "domain": "Environment",
+      "raw_csvs": [],
+      "embedding_files": 0,
+      "status": "raw_data_missing",
+      "strict_backtest_ready": false
+    },
+    {
+      "domain": "Climate",
+      "raw_csvs": [],
+      "embedding_files": 0,
+      "status": "raw_data_missing",
+      "strict_backtest_ready": false
+    }
+  ],
+  "policy": "Never infer issued_at/available_at/ingested_at from start_date or file mtime."
+}
