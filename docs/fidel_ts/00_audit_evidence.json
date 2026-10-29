@@ -1,0 +1,1292 @@
+{
+  "audit_date": "2026-10-29",
+  "local_commit": "a650d4367c29b52b01a1fe87085d590332609a08",
+  "scope": "stage_0_only",
+  "official_code": {
+    "sha": "81043864342e550ed9ffdaa7d9ae6d8420460c6e",
+    "branch_observed": "Reasoning_baselines",
+    "url": "https://github.com/VEWOXIC/Universal-Cross-Modal-Time-Series-Forecasting-Pipeline"
+  },
+  "paper": "https://arxiv.org/html/2509.24789v5",
+  "datasets": {
+    "caiso": {
+      "id": "fidel-ts/California_ISO",
+      "revision": "75f74f556edd5fbdd080c4db6d4b7547fc331f39",
+      "last_modified": "2026-05-03T16:10:43.000Z",
+      "repository_file_count": 147,
+      "files": [
+        ".gitattributes",
+        "README.md",
+        "id_info.json",
+        "id_info_except_battery.json",
+        "raw_data/all_channel_imputed/co2.parquet",
+        "raw_data/all_channel_imputed/demand.parquet",
+        "raw_data/all_channel_imputed/fuelsource.parquet",
+        "raw_data/all_channel_raw/raw_co2.parquet",
+        "raw_data/all_channel_raw/raw_demand.parquet",
+        "raw_data/all_channel_raw/raw_fuelsource.parquet",
+        "scripts/clean_and_impute.py",
+        "scripts/embed.py",
+        "scripts/embed_static.py",
+        "scripts/merge_all_channel.py",
+        "scripts/merge_embed.py",
+        "scripts/merge_general_report.py",
+        "static_info.json",
+        "static_info_demand.json",
+        "static_info_embeddings_demand.pkl",
+        "static_info_embeddings_except_battery.pkl",
+        "static_info_except_battery.json",
+        "time_series/all.parquet",
+        "time_series/all_except_battery.parquet",
+        "time_series/id_info.json",
+        "time_series/id_info_except_battery.json",
+        "weather/merged_general_report/merged_general_weather_forecast.json",
+        "weather/merged_report_embedding/fast_general_formal_embeddings_2018.pkl",
+        "weather/merged_report_embedding/fast_general_formal_embeddings_2019.pkl",
+        "weather/merged_report_embedding/fast_general_formal_embeddings_2020.pkl",
+        "weather/merged_report_embedding/fast_general_formal_embeddings_2021.pkl",
+        "weather/merged_report_embedding/fast_general_formal_embeddings_2022.pkl",
+        "weather/merged_report_embedding/fast_general_formal_embeddings_2023.pkl",
+        "weather/merged_report_embedding/fast_general_formal_embeddings_2024.pkl",
+        "weather/merged_report_embedding/fast_general_formal_embeddings_2025.pkl",
+        "weather/merged_report_embedding/static_info_embeddings_except_battery.pkl",
+        "weather/san-diego/raw_data/daily_weather_2018.csv",
+        "weather/san-diego/raw_data/daily_weather_2019.csv",
+        "weather/san-diego/raw_data/daily_weather_2020.csv",
+        "weather/san-diego/raw_data/daily_weather_2021.csv",
+        "weather/san-diego/raw_data/daily_weather_2022.csv",
+        "weather/san-diego/raw_data/daily_weather_2023.csv",
+        "weather/san-diego/raw_data/daily_weather_2024.csv",
+        "weather/san-diego/raw_data/daily_weather_2025.csv",
+        "weather/san-diego/raw_data/daily_weather_raw_2018.json",
+        "weather/san-diego/raw_data/daily_weather_raw_2019.json",
+        "weather/san-diego/raw_data/daily_weather_raw_2020.json",
+        "weather/san-diego/raw_data/daily_weather_raw_2021.json",
+        "weather/san-diego/raw_data/daily_weather_raw_2022.json",
+        "weather/san-diego/raw_data/daily_weather_raw_2023.json",
+        "weather/san-diego/raw_data/daily_weather_raw_2024.json",
+        "weather/san-diego/raw_data/daily_weather_raw_2025.json",
+        "weather/san-diego/raw_data/hourly_weather_raw_2018.csv",
+        "weather/san-diego/raw_data/hourly_weather_raw_2019.csv",
+        "weather/san-diego/raw_data/hourly_weather_raw_2020.csv",
+        "weather/san-diego/raw_data/hourly_weather_raw_2021.csv",
+        "weather/san-diego/raw_data/hourly_weather_raw_2022.csv",
+        "weather/san-diego/raw_data/hourly_weather_raw_2023.csv",
+        "weather/san-diego/raw_data/hourly_weather_raw_2024.csv",
+        "weather/san-diego/raw_data/hourly_weather_raw_2025.csv",
+        "weather/san-diego/report_embedding/formal_report/fast_general_formal_embeddings_2018.pkl",
+        "weather/san-diego/report_embedding/formal_report/fast_general_formal_embeddings_2019.pkl",
+        "weather/san-diego/report_embedding/formal_report/fast_general_formal_embeddings_2020.pkl",
+        "weather/san-diego/report_embedding/formal_report/fast_general_formal_embeddings_2021.pkl",
+        "weather/san-diego/report_embedding/formal_report/fast_general_formal_embeddings_2022.pkl",
+        "weather/san-diego/report_embedding/formal_report/fast_general_formal_embeddings_2023.pkl",
+        "weather/san-diego/report_embedding/formal_report/fast_general_formal_embeddings_2024.pkl",
+        "weather/san-diego/report_embedding/formal_report/fast_general_formal_embeddings_2025.pkl",
+        "weather/san-diego/report_embedding/general_report/general_weather_embeddings_2018.pkl",
+        "weather/san-diego/report_embedding/general_report/general_weather_embeddings_2019.pkl",
+        "weather/san-diego/report_embedding/general_report/general_weather_embeddings_2020.pkl",
+        "weather/san-diego/report_embedding/general_report/general_weather_embeddings_2021.pkl",
+        "weather/san-diego/report_embedding/general_report/general_weather_embeddings_2022.pkl",
+        "weather/san-diego/report_embedding/general_report/general_weather_embeddings_2023.pkl",
+        "weather/san-diego/report_embedding/general_report/general_weather_embeddings_2024.pkl",
+        "weather/san-diego/report_embedding/general_report/general_weather_embeddings_2025.pkl",
+        "weather/san-diego/weather_report/formal_report/fast_general_formal_forecast_2018.json",
+        "weather/san-diego/weather_report/formal_report/fast_general_formal_forecast_2019.json",
+        "weather/san-diego/weather_report/formal_report/fast_general_formal_forecast_2020.json",
+        "weather/san-diego/weather_report/formal_report/fast_general_formal_forecast_2021.json",
+        "weather/san-diego/weather_report/formal_report/fast_general_formal_forecast_2022.json",
+        "weather/san-diego/weather_report/formal_report/fast_general_formal_forecast_2023.json",
+        "weather/san-diego/weather_report/formal_report/fast_general_formal_forecast_2024.json",
+        "weather/san-diego/weather_report/formal_report/fast_general_formal_forecast_2025.json",
+        "weather/san-diego/weather_report/general_report/general_weather_forecast_2018.json",
+        "weather/san-diego/weather_report/general_report/general_weather_forecast_2019.json",
+        "weather/san-diego/weather_report/general_report/general_weather_forecast_2020.json",
+        "weather/san-diego/weather_report/general_report/general_weather_forecast_2021.json",
+        "weather/san-diego/weather_report/general_report/general_weather_forecast_2022.json",
+        "weather/san-diego/weather_report/general_report/general_weather_forecast_2023.json",
+        "weather/san-diego/weather_report/general_report/general_weather_forecast_2024.json",
+        "weather/san-diego/weather_report/general_report/general_weather_forecast_2025.json",
+        "weather/san-francisco/raw_data/daily_weather_2018.csv",
+        "weather/san-francisco/raw_data/daily_weather_2019.csv",
+        "weather/san-francisco/raw_data/daily_weather_2020.csv",
+        "weather/san-francisco/raw_data/daily_weather_2021.csv",
+        "weather/san-francisco/raw_data/daily_weather_2022.csv",
+        "weather/san-francisco/raw_data/daily_weather_2023.csv",
+        "weather/san-francisco/raw_data/daily_weather_2024.csv",
+        "weather/san-francisco/raw_data/daily_weather_2025.csv",
+        "weather/san-francisco/raw_data/daily_weather_raw_2018.json",
+        "weather/san-francisco/raw_data/daily_weather_raw_2019.json",
+        "weather/san-francisco/raw_data/daily_weather_raw_2020.json",
+        "weather/san-francisco/raw_data/daily_weather_raw_2021.json",
+        "weather/san-francisco/raw_data/daily_weather_raw_2022.json",
+        "weather/san-francisco/raw_data/daily_weather_raw_2023.json",
+        "weather/san-francisco/raw_data/daily_weather_raw_2024.json",
+        "weather/san-francisco/raw_data/daily_weather_raw_2025.json",
+        "weather/san-francisco/raw_data/hourly_weather_raw_2018.csv",
+        "weather/san-francisco/raw_data/hourly_weather_raw_2019.csv",
+        "weather/san-francisco/raw_data/hourly_weather_raw_2020.csv",
+        "weather/san-francisco/raw_data/hourly_weather_raw_2021.csv",
+        "weather/san-francisco/raw_data/hourly_weather_raw_2022.csv",
+        "weather/san-francisco/raw_data/hourly_weather_raw_2023.csv",
+        "weather/san-francisco/raw_data/hourly_weather_raw_2024.csv",
+        "weather/san-francisco/raw_data/hourly_weather_raw_2025.csv",
+        "weather/san-francisco/report_embedding/formal_report/fast_general_formal_embeddings_2018.pkl",
+        "weather/san-francisco/report_embedding/formal_report/fast_general_formal_embeddings_2019.pkl",
+        "weather/san-francisco/report_embedding/formal_report/fast_general_formal_embeddings_2020.pkl",
+        "weather/san-francisco/report_embedding/formal_report/fast_general_formal_embeddings_2021.pkl",
+        "weather/san-francisco/report_embedding/formal_report/fast_general_formal_embeddings_2022.pkl",
+        "weather/san-francisco/report_embedding/formal_report/fast_general_formal_embeddings_2023.pkl",
+        "weather/san-francisco/report_embedding/formal_report/fast_general_formal_embeddings_2024.pkl",
+        "weather/san-francisco/report_embedding/formal_report/fast_general_formal_embeddings_2025.pkl",
+        "weather/san-francisco/report_embedding/general_report/general_weather_embeddings_2018.pkl",
+        "weather/san-francisco/report_embedding/general_report/general_weather_embeddings_2019.pkl",
+        "weather/san-francisco/report_embedding/general_report/general_weather_embeddings_2020.pkl",
+        "weather/san-francisco/report_embedding/general_report/general_weather_embeddings_2021.pkl",
+        "weather/san-francisco/report_embedding/general_report/general_weather_embeddings_2022.pkl",
+        "weather/san-francisco/report_embedding/general_report/general_weather_embeddings_2023.pkl",
+        "weather/san-francisco/report_embedding/general_report/general_weather_embeddings_2024.pkl",
+        "weather/san-francisco/report_embedding/general_report/general_weather_embeddings_2025.pkl",
+        "weather/san-francisco/weather_report/formal_report/fast_general_formal_forecast_2018.json",
+        "weather/san-francisco/weather_report/formal_report/fast_general_formal_forecast_2019.json",
+        "weather/san-francisco/weather_report/formal_report/fast_general_formal_forecast_2020.json",
+        "weather/san-francisco/weather_report/formal_report/fast_general_formal_forecast_2021.json",
+        "weather/san-francisco/weather_report/formal_report/fast_general_formal_forecast_2022.json",
+        "weather/san-francisco/weather_report/formal_report/fast_general_formal_forecast_2023.json",
+        "weather/san-francisco/weather_report/formal_report/fast_general_formal_forecast_2024.json",
+        "weather/san-francisco/weather_report/formal_report/fast_general_formal_forecast_2025.json",
+        "weather/san-francisco/weather_report/general_report/general_weather_forecast_2018.json",
+        "weather/san-francisco/weather_report/general_report/general_weather_forecast_2019.json",
+        "weather/san-francisco/weather_report/general_report/general_weather_forecast_2020.json",
+        "weather/san-francisco/weather_report/general_report/general_weather_forecast_2021.json",
+        "weather/san-francisco/weather_report/general_report/general_weather_forecast_2022.json",
+        "weather/san-francisco/weather_report/general_report/general_weather_forecast_2023.json",
+        "weather/san-francisco/weather_report/general_report/general_weather_forecast_2024.json",
+        "weather/san-francisco/weather_report/general_report/general_weather_forecast_2025.json"
+      ]
+    },
+    "jena": {
+      "id": "fidel-ts/Jena_Atmospheric_Physics",
+      "revision": "c8da24175c7aabe5c3b02b503e4c5afe44a605fd",
+      "last_modified": "2026-05-03T16:24:49.000Z",
+      "repository_file_count": 32,
+      "files": [
+        ".gitattributes",
+        "README.md",
+        "id_info.json",
+        "raw_data/weather_2014-18.parquet",
+        "raw_data/weather_2019-22.parquet",
+        "raw_data/weather_2023-25.parquet",
+        "scripts/embed.py",
+        "scripts/embed_static.py",
+        "static_info.json",
+        "static_info_embeddings.pkl",
+        "time_series/id_info.json",
+        "time_series/weather_large.parquet",
+        "weather/report_embedding/formal_report/static_info_embeddings.pkl",
+        "weather/report_embedding/formal_report/wm_messages_v1.pkl",
+        "weather/report_embedding/formal_report/wm_messages_v2.pkl",
+        "weather/report_embedding/formal_report/wm_messages_v3.pkl",
+        "weather/weather_report/formal_report/wm_messages_v1.json",
+        "weather/weather_report/formal_report/wm_messages_v2.json",
+        "weather/weather_report/formal_report/wm_messages_v3.json",
+        "weather/weather_report/general_report/fast_general_weather_forecast_2014.json",
+        "weather/weather_report/general_report/fast_general_weather_forecast_2015.json",
+        "weather/weather_report/general_report/fast_general_weather_forecast_2016.json",
+        "weather/weather_report/general_report/fast_general_weather_forecast_2017.json",
+        "weather/weather_report/general_report/fast_general_weather_forecast_2018.json",
+        "weather/weather_report/general_report/fast_general_weather_forecast_2019.json",
+        "weather/weather_report/general_report/fast_general_weather_forecast_2020.json",
+        "weather/weather_report/general_report/fast_general_weather_forecast_2021.json",
+        "weather/weather_report/general_report/fast_general_weather_forecast_2022.json",
+        "weather/weather_report/general_report/fast_general_weather_forecast_2023.json",
+        "weather/weather_report/general_report/fast_general_weather_forecast_2024.json",
+        "weather/weather_report/general_report/fast_general_weather_forecast_2025.json",
+        "weather/weather_report/general_report/static_info.json"
+      ]
+    }
+  },
+  "parquet_metadata": [
+    {
+      "dataset": "caiso",
+      "revision": "75f74f556edd5fbdd080c4db6d4b7547fc331f39",
+      "path": "time_series/all.parquet",
+      "size_bytes": 23494657,
+      "rows_footer": 724896,
+      "rowgroups": 1,
+      "footer_bytes": 11877,
+      "tail_content_range": "bytes 23429121-23494656/23494657",
+      "tail_sha256": "7dc4e10f5077686f3ed97265ed909fd2cd78023420b213e5cfa31ed0c2252060",
+      "columns": [
+        {
+          "name": "Time",
+          "physical_type": 2,
+          "null_count_footer": 0,
+          "min_ns": 1523318400000000000,
+          "max_ns": 1740786900000000000,
+          "min_time": "2018-04-10 00:00:00",
+          "max_time": "2025-02-28 23:55:00",
+          "is_adjusted_to_utc": false,
+          "unit": "ns"
+        },
+        {
+          "name": "Biogas CO2",
+          "physical_type": 5,
+          "null_count_footer": 0,
+          "min_footer": -0.0,
+          "max_footer": 951.0
+        },
+        {
+          "name": "Biomass CO2",
+          "physical_type": 5,
+          "null_count_footer": 0,
+          "min_footer": -123.0,
+          "max_footer": 246.0
+        },
+        {
+          "name": "Natural Gas CO2",
+          "physical_type": 5,
+          "null_count_footer": 0,
+          "min_footer": -206547.0,
+          "max_footer": 13079.0
+        },
+        {
+          "name": "Coal CO2",
+          "physical_type": 5,
+          "null_count_footer": 0,
+          "min_footer": -8.0,
+          "max_footer": 72.0
+        },
+        {
+          "name": "Imports CO2",
+          "physical_type": 5,
+          "null_count_footer": 0,
+          "min_footer": -11165.0,
+          "max_footer": 5760.0
+        },
+        {
+          "name": "Geothermal CO2",
+          "physical_type": 5,
+          "null_count_footer": 0,
+          "min_footer": -7.0,
+          "max_footer": 13.0
+        },
+        {
+          "name": "Day ahead forecast",
+          "physical_type": 5,
+          "null_count_footer": 0,
+          "min_footer": -0.0,
+          "max_footer": 51318.0
+        },
+        {
+          "name": "Hour ahead forecast",
+          "physical_type": 5,
+          "null_count_footer": 0,
+          "min_footer": -0.0,
+          "max_footer": 51929.0
+        },
+        {
+          "name": "Current demand",
+          "physical_type": 5,
+          "null_count_footer": 0,
+          "min_footer": -2651.0,
+          "max_footer": 72922.0
+        },
+        {
+          "name": "SOLAR",
+          "physical_type": 5,
+          "null_count_footer": 0,
+          "min_footer": -216.0,
+          "max_footer": 19624.0
+        },
+        {
+          "name": "WIND",
+          "physical_type": 5,
+          "null_count_footer": 0,
+          "min_footer": -2476.0,
+          "max_footer": 36275.0
+        },
+        {
+          "name": "GEOTHERMAL",
+          "physical_type": 5,
+          "null_count_footer": 0,
+          "min_footer": -784.0,
+          "max_footer": 1136.0
+        },
+        {
+          "name": "BIOMASS",
+          "physical_type": 5,
+          "null_count_footer": 0,
+          "min_footer": -278.0,
+          "max_footer": 509.0
+        },
+        {
+          "name": "BIOGAS",
+          "physical_type": 5,
+          "null_count_footer": 0,
+          "min_footer": -0.0,
+          "max_footer": 1842.0
+        },
+        {
+          "name": "SMALL HYDRO",
+          "physical_type": 5,
+          "null_count_footer": 0,
+          "min_footer": -2826.0,
+          "max_footer": 431490.0
+        },
+        {
+          "name": "COAL",
+          "physical_type": 5,
+          "null_count_footer": 0,
+          "min_footer": -10.0,
+          "max_footer": 91.0
+        },
+        {
+          "name": "NUCLEAR",
+          "physical_type": 5,
+          "null_count_footer": 0,
+          "min_footer": -74.0,
+          "max_footer": 2290.0
+        },
+        {
+          "name": "NATURAL GAS",
+          "physical_type": 5,
+          "null_count_footer": 0,
+          "min_footer": -280718.0,
+          "max_footer": 26697.0
+        },
+        {
+          "name": "LARGE HYDRO",
+          "physical_type": 5,
+          "null_count_footer": 0,
+          "min_footer": -595.0,
+          "max_footer": 6362.0
+        },
+        {
+          "name": "BATTERIES",
+          "physical_type": 5,
+          "null_count_footer": 0,
+          "min_footer": -8270.0,
+          "max_footer": 8354.0
+        },
+        {
+          "name": "IMPORTS",
+          "physical_type": 5,
+          "null_count_footer": 0,
+          "min_footer": -22949.0,
+          "max_footer": 12073.0
+        }
+      ]
+    },
+    {
+      "dataset": "caiso",
+      "revision": "75f74f556edd5fbdd080c4db6d4b7547fc331f39",
+      "path": "time_series/all_except_battery.parquet",
+      "size_bytes": 22264375,
+      "rows_footer": 724896,
+      "rowgroups": 1,
+      "footer_bytes": 11383,
+      "tail_content_range": "bytes 22198839-22264374/22264375",
+      "tail_sha256": "255cf3264293c3a62534022fe6c5cc19f2ea1b11de5142a9439446d25562a8e3",
+      "columns": [
+        {
+          "name": "Time",
+          "physical_type": 2,
+          "null_count_footer": 0,
+          "min_ns": 1523318400000000000,
+          "max_ns": 1740786900000000000,
+          "min_time": "2018-04-10 00:00:00",
+          "max_time": "2025-02-28 23:55:00",
+          "is_adjusted_to_utc": false,
+          "unit": "ns"
+        },
+        {
+          "name": "Biogas CO2",
+          "physical_type": 5,
+          "null_count_footer": 0,
+          "min_footer": -0.0,
+          "max_footer": 951.0
+        },
+        {
+          "name": "Biomass CO2",
+          "physical_type": 5,
+          "null_count_footer": 0,
+          "min_footer": -123.0,
+          "max_footer": 246.0
+        },
+        {
+          "name": "Natural Gas CO2",
+          "physical_type": 5,
+          "null_count_footer": 0,
+          "min_footer": -206547.0,
+          "max_footer": 13079.0
+        },
+        {
+          "name": "Coal CO2",
+          "physical_type": 5,
+          "null_count_footer": 0,
+          "min_footer": -8.0,
+          "max_footer": 72.0
+        },
+        {
+          "name": "Imports CO2",
+          "physical_type": 5,
+          "null_count_footer": 0,
+          "min_footer": -11165.0,
+          "max_footer": 5760.0
+        },
+        {
+          "name": "Geothermal CO2",
+          "physical_type": 5,
+          "null_count_footer": 0,
+          "min_footer": -7.0,
+          "max_footer": 13.0
+        },
+        {
+          "name": "Day ahead forecast",
+          "physical_type": 5,
+          "null_count_footer": 0,
+          "min_footer": -0.0,
+          "max_footer": 51318.0
+        },
+        {
+          "name": "Hour ahead forecast",
+          "physical_type": 5,
+          "null_count_footer": 0,
+          "min_footer": -0.0,
+          "max_footer": 51929.0
+        },
+        {
+          "name": "Current demand",
+          "physical_type": 5,
+          "null_count_footer": 0,
+          "min_footer": -2651.0,
+          "max_footer": 72922.0
+        },
+        {
+          "name": "SOLAR",
+          "physical_type": 5,
+          "null_count_footer": 0,
+          "min_footer": -216.0,
+          "max_footer": 19624.0
+        },
+        {
+          "name": "WIND",
+          "physical_type": 5,
+          "null_count_footer": 0,
+          "min_footer": -2476.0,
+          "max_footer": 36275.0
+        },
+        {
+          "name": "GEOTHERMAL",
+          "physical_type": 5,
+          "null_count_footer": 0,
+          "min_footer": -784.0,
+          "max_footer": 1136.0
+        },
+        {
+          "name": "BIOMASS",
+          "physical_type": 5,
+          "null_count_footer": 0,
+          "min_footer": -278.0,
+          "max_footer": 509.0
+        },
+        {
+          "name": "BIOGAS",
+          "physical_type": 5,
+          "null_count_footer": 0,
+          "min_footer": -0.0,
+          "max_footer": 1842.0
+        },
+        {
+          "name": "SMALL HYDRO",
+          "physical_type": 5,
+          "null_count_footer": 0,
+          "min_footer": -2826.0,
+          "max_footer": 431490.0
+        },
+        {
+          "name": "COAL",
+          "physical_type": 5,
+          "null_count_footer": 0,
+          "min_footer": -10.0,
+          "max_footer": 91.0
+        },
+        {
+          "name": "NUCLEAR",
+          "physical_type": 5,
+          "null_count_footer": 0,
+          "min_footer": -74.0,
+          "max_footer": 2290.0
+        },
+        {
+          "name": "NATURAL GAS",
+          "physical_type": 5,
+          "null_count_footer": 0,
+          "min_footer": -280718.0,
+          "max_footer": 26697.0
+        },
+        {
+          "name": "LARGE HYDRO",
+          "physical_type": 5,
+          "null_count_footer": 0,
+          "min_footer": -595.0,
+          "max_footer": 6362.0
+        },
+        {
+          "name": "IMPORTS",
+          "physical_type": 5,
+          "null_count_footer": 0,
+          "min_footer": -22949.0,
+          "max_footer": 12073.0
+        }
+      ]
+    },
+    {
+      "dataset": "jena",
+      "revision": "c8da24175c7aabe5c3b02b503e4c5afe44a605fd",
+      "path": "time_series/weather_large.parquet",
+      "size_bytes": 23421608,
+      "rows_footer": 604311,
+      "rowgroups": 1,
+      "footer_bytes": 11616,
+      "tail_content_range": "bytes 23356072-23421607/23421608",
+      "tail_sha256": "0837211967124a59402423f87a61e195c2df240b29bb94c62acb8afb73017e1c",
+      "columns": [
+        {
+          "name": "Date Time",
+          "physical_type": 2,
+          "null_count_footer": 0,
+          "min_ns": 1388535000000000000,
+          "max_ns": 1751327400000000000,
+          "min_time": "2014-01-01 00:10:00",
+          "max_time": "2025-06-30 23:50:00",
+          "is_adjusted_to_utc": false,
+          "unit": "ns"
+        },
+        {
+          "name": "p (mbar)",
+          "physical_type": 5,
+          "null_count_footer": 0,
+          "min_footer": 945.64,
+          "max_footer": 1020.07
+        },
+        {
+          "name": "T (degC)",
+          "physical_type": 5,
+          "null_count_footer": 0,
+          "min_footer": -19.96,
+          "max_footer": 37.95
+        },
+        {
+          "name": "Tpot (K)",
+          "physical_type": 5,
+          "null_count_footer": 0,
+          "min_footer": 254.57,
+          "max_footer": 312.21
+        },
+        {
+          "name": "Tdew (degC)",
+          "physical_type": 5,
+          "null_count_footer": 0,
+          "min_footer": -21.17,
+          "max_footer": 22.25
+        },
+        {
+          "name": "rh (%)",
+          "physical_type": 5,
+          "null_count_footer": 0,
+          "min_footer": 14.23,
+          "max_footer": 100.0
+        },
+        {
+          "name": "VPmax (mbar)",
+          "physical_type": 5,
+          "null_count_footer": 0,
+          "min_footer": 1.24,
+          "max_footer": 66.13
+        },
+        {
+          "name": "VPact (mbar)",
+          "physical_type": 5,
+          "null_count_footer": 0,
+          "min_footer": 1.12,
+          "max_footer": 26.88
+        },
+        {
+          "name": "VPdef (mbar)",
+          "physical_type": 5,
+          "null_count_footer": 0,
+          "min_footer": -0.0,
+          "max_footer": 56.72
+        },
+        {
+          "name": "sh (g/kg)",
+          "physical_type": 5,
+          "null_count_footer": 0,
+          "min_footer": 0.71,
+          "max_footer": 17.13
+        },
+        {
+          "name": "H2OC (mmol/mol)",
+          "physical_type": 5,
+          "null_count_footer": 0,
+          "min_footer": 1.14,
+          "max_footer": 27.26
+        },
+        {
+          "name": "rho (g/m**3)",
+          "physical_type": 5,
+          "null_count_footer": 0,
+          "min_footer": 1099.96,
+          "max_footer": 1372.81
+        },
+        {
+          "name": "wv (m/s)",
+          "physical_type": 5,
+          "null_count_footer": 0,
+          "min_footer": -9999.0,
+          "max_footer": 28.49
+        },
+        {
+          "name": "max. wv (m/s)",
+          "physical_type": 5,
+          "null_count_footer": 0,
+          "min_footer": -9999.0,
+          "max_footer": 22.9
+        },
+        {
+          "name": "wd (deg)",
+          "physical_type": 5,
+          "null_count_footer": 0,
+          "min_footer": -0.0,
+          "max_footer": 360.0
+        },
+        {
+          "name": "rain (mm)",
+          "physical_type": 5,
+          "null_count_footer": 0,
+          "min_footer": -0.0,
+          "max_footer": 19.2
+        },
+        {
+          "name": "raining (s)",
+          "physical_type": 5,
+          "null_count_footer": 0,
+          "min_footer": -0.0,
+          "max_footer": 600.0
+        },
+        {
+          "name": "SWDR (W/m�)",
+          "physical_type": 5,
+          "null_count_footer": 0,
+          "min_footer": -9999.0,
+          "max_footer": 1219.32
+        },
+        {
+          "name": "PAR (�mol/m�/s)",
+          "physical_type": 5,
+          "null_count_footer": 0,
+          "min_footer": -0.0,
+          "max_footer": 2401.54
+        },
+        {
+          "name": "max. PAR (�mol/m�/s)",
+          "physical_type": 5,
+          "null_count_footer": 0,
+          "min_footer": -9999.0,
+          "max_footer": 2500.0
+        },
+        {
+          "name": "Tlog (degC)",
+          "physical_type": 5,
+          "null_count_footer": 0,
+          "min_footer": -6.14,
+          "max_footer": 50.47
+        },
+        {
+          "name": "CO2 (ppm)",
+          "physical_type": 5,
+          "null_count_footer": 0,
+          "min_footer": -9999.0,
+          "max_footer": 583.7
+        }
+      ]
+    }
+  ],
+  "report_prefixes": [
+    {
+      "sample": "caiso_weather_merged_general_report_merged_general_weather_forecast.json.sample",
+      "complete_records_in_prefix": 47,
+      "first_key": "20180101",
+      "last_complete_key_in_prefix": "20180216",
+      "sorted_key_intervals_seconds_in_prefix": [
+        86400
+      ],
+      "fields": [
+        "weather_report"
+      ],
+      "all_sample_records_have_issue_time": false,
+      "prefix_sha256": "372d068a969a035873eb72805312ca48c497cc1d59b341401211b8364dd2866f",
+      "revision": "75f74f556edd5fbdd080c4db6d4b7547fc331f39",
+      "dataset": "caiso",
+      "scope": "complete entries within the first 65536 bytes only",
+      "path": "weather/merged_general_report/merged_general_weather_forecast.json",
+      "url": "https://huggingface.co/datasets/fidel-ts/California_ISO/resolve/75f74f556edd5fbdd080c4db6d4b7547fc331f39/weather/merged_general_report/merged_general_weather_forecast.json",
+      "range": "bytes=0-65535"
+    },
+    {
+      "sample": "caiso_weather_san-diego_weather_report_formal_report_fast_general_formal_forecast_2018.json.sample",
+      "complete_records_in_prefix": 114,
+      "first_key": "201801010000",
+      "last_complete_key_in_prefix": "201801290600",
+      "sorted_key_intervals_seconds_in_prefix": [
+        21600
+      ],
+      "fields": [
+        "Current overall Weather Condition",
+        "Humidity",
+        "Pressure",
+        "Temperature Trend",
+        "Time of Day",
+        "Weather Trend",
+        "Wind Condition"
+      ],
+      "all_sample_records_have_issue_time": false,
+      "prefix_sha256": "6570513b832c5185a5ece1395c20ccfdb757b72e45d6de9f193a45696fe5f505",
+      "revision": "75f74f556edd5fbdd080c4db6d4b7547fc331f39",
+      "dataset": "caiso",
+      "scope": "complete entries within the first 65536 bytes only",
+      "path": "weather/san-diego/weather_report/formal_report/fast_general_formal_forecast_2018.json",
+      "url": "https://huggingface.co/datasets/fidel-ts/California_ISO/resolve/75f74f556edd5fbdd080c4db6d4b7547fc331f39/weather/san-diego/weather_report/formal_report/fast_general_formal_forecast_2018.json",
+      "range": "bytes=0-65535"
+    },
+    {
+      "sample": "caiso_weather_san-diego_weather_report_general_report_general_weather_forecast_2018.json.sample",
+      "complete_records_in_prefix": 52,
+      "first_key": "20180101",
+      "last_complete_key_in_prefix": "20180221",
+      "sorted_key_intervals_seconds_in_prefix": [
+        86400
+      ],
+      "fields": [
+        "Afternoon",
+        "Early Morning",
+        "Evening",
+        "Morning",
+        "daily"
+      ],
+      "all_sample_records_have_issue_time": false,
+      "prefix_sha256": "468ecc52789778fc66ee74b39e3a96f84c56b814a7e0e69ef7186d7c5153d388",
+      "revision": "75f74f556edd5fbdd080c4db6d4b7547fc331f39",
+      "dataset": "caiso",
+      "scope": "complete entries within the first 65536 bytes only",
+      "path": "weather/san-diego/weather_report/general_report/general_weather_forecast_2018.json",
+      "url": "https://huggingface.co/datasets/fidel-ts/California_ISO/resolve/75f74f556edd5fbdd080c4db6d4b7547fc331f39/weather/san-diego/weather_report/general_report/general_weather_forecast_2018.json",
+      "range": "bytes=0-65535"
+    },
+    {
+      "sample": "caiso_weather_san-francisco_weather_report_formal_report_fast_general_formal_forecast_2018.json.sample",
+      "complete_records_in_prefix": 112,
+      "first_key": "201801010000",
+      "last_complete_key_in_prefix": "201801281800",
+      "sorted_key_intervals_seconds_in_prefix": [
+        21600
+      ],
+      "fields": [
+        "Current overall Weather Condition",
+        "Humidity",
+        "Pressure",
+        "Temperature Trend",
+        "Time of Day",
+        "Weather Trend",
+        "Wind Condition"
+      ],
+      "all_sample_records_have_issue_time": false,
+      "prefix_sha256": "f6460293aaac6b528647586c59eaee80dc37f19178deff10587b92062809ba57",
+      "revision": "75f74f556edd5fbdd080c4db6d4b7547fc331f39",
+      "dataset": "caiso",
+      "scope": "complete entries within the first 65536 bytes only",
+      "path": "weather/san-francisco/weather_report/formal_report/fast_general_formal_forecast_2018.json",
+      "url": "https://huggingface.co/datasets/fidel-ts/California_ISO/resolve/75f74f556edd5fbdd080c4db6d4b7547fc331f39/weather/san-francisco/weather_report/formal_report/fast_general_formal_forecast_2018.json",
+      "range": "bytes=0-65535"
+    },
+    {
+      "sample": "jena_weather_weather_report_formal_report_wm_messages_v1.json.sample",
+      "complete_records_in_prefix": 112,
+      "first_key": "201401010000",
+      "last_complete_key_in_prefix": "201401281800",
+      "sorted_key_intervals_seconds_in_prefix": [
+        21600
+      ],
+      "fields": [
+        "Current overall Weather Condition",
+        "Humidity",
+        "Pressure",
+        "Temperature Trend",
+        "Time of Day",
+        "Weather Trend",
+        "Wind Condition"
+      ],
+      "all_sample_records_have_issue_time": false,
+      "prefix_sha256": "382f08d60add0a560c4be2dae1dd5c835ad71c9ac1b78bbea792d49daff2131a",
+      "revision": "c8da24175c7aabe5c3b02b503e4c5afe44a605fd",
+      "dataset": "jena",
+      "scope": "complete entries within the first 65536 bytes only",
+      "path": "weather/weather_report/formal_report/wm_messages_v1.json",
+      "url": "https://huggingface.co/datasets/fidel-ts/Jena_Atmospheric_Physics/resolve/c8da24175c7aabe5c3b02b503e4c5afe44a605fd/weather/weather_report/formal_report/wm_messages_v1.json",
+      "range": "bytes=0-65535"
+    },
+    {
+      "sample": "jena_weather_weather_report_formal_report_wm_messages_v2.json.sample",
+      "complete_records_in_prefix": 116,
+      "first_key": "201401010000",
+      "last_complete_key_in_prefix": "201401291800",
+      "sorted_key_intervals_seconds_in_prefix": [
+        21600
+      ],
+      "fields": [
+        "Current overall Weather Condition",
+        "Humidity",
+        "Pressure",
+        "Temperature Trend",
+        "Time of Day",
+        "Weather Trend",
+        "Wind Condition"
+      ],
+      "all_sample_records_have_issue_time": false,
+      "prefix_sha256": "ca04f68d746cb2483130fbb2e42c34396014b72ff519f253788e0d1840a42751",
+      "revision": "c8da24175c7aabe5c3b02b503e4c5afe44a605fd",
+      "dataset": "jena",
+      "scope": "complete entries within the first 65536 bytes only",
+      "path": "weather/weather_report/formal_report/wm_messages_v2.json",
+      "url": "https://huggingface.co/datasets/fidel-ts/Jena_Atmospheric_Physics/resolve/c8da24175c7aabe5c3b02b503e4c5afe44a605fd/weather/weather_report/formal_report/wm_messages_v2.json",
+      "range": "bytes=0-65535"
+    },
+    {
+      "sample": "jena_weather_weather_report_formal_report_wm_messages_v3.json.sample",
+      "complete_records_in_prefix": 112,
+      "first_key": "201401010000",
+      "last_complete_key_in_prefix": "201401281800",
+      "sorted_key_intervals_seconds_in_prefix": [
+        21600
+      ],
+      "fields": [
+        "Current overall Weather Condition",
+        "Humidity",
+        "Pressure",
+        "Temperature Trend",
+        "Time of Day",
+        "Weather Trend",
+        "Wind Condition"
+      ],
+      "all_sample_records_have_issue_time": false,
+      "prefix_sha256": "a56f88a6494ff033559d6f86bda1345af4b849ea8b8cf28c303e1aa7d0aff6e9",
+      "revision": "c8da24175c7aabe5c3b02b503e4c5afe44a605fd",
+      "dataset": "jena",
+      "scope": "complete entries within the first 65536 bytes only",
+      "path": "weather/weather_report/formal_report/wm_messages_v3.json",
+      "url": "https://huggingface.co/datasets/fidel-ts/Jena_Atmospheric_Physics/resolve/c8da24175c7aabe5c3b02b503e4c5afe44a605fd/weather/weather_report/formal_report/wm_messages_v3.json",
+      "range": "bytes=0-65535"
+    },
+    {
+      "sample": "jena_weather_weather_report_general_report_fast_general_weather_forecast_2014.json.sample",
+      "complete_records_in_prefix": 38,
+      "first_key": "20140201",
+      "last_complete_key_in_prefix": "20140310",
+      "sorted_key_intervals_seconds_in_prefix": [
+        86400
+      ],
+      "fields": [
+        "Afternoon",
+        "Early Morning",
+        "Evening",
+        "Morning",
+        "daily"
+      ],
+      "all_sample_records_have_issue_time": false,
+      "prefix_sha256": "da7c74a7c84abccc69d2ba8fa9dddc6a218d9d277fb83ac7102a7dbcf83984d7",
+      "revision": "c8da24175c7aabe5c3b02b503e4c5afe44a605fd",
+      "dataset": "jena",
+      "scope": "complete entries within the first 65536 bytes only",
+      "path": "weather/weather_report/general_report/fast_general_weather_forecast_2014.json",
+      "url": "https://huggingface.co/datasets/fidel-ts/Jena_Atmospheric_Physics/resolve/c8da24175c7aabe5c3b02b503e4c5afe44a605fd/weather/weather_report/general_report/fast_general_weather_forecast_2014.json",
+      "range": "bytes=0-65535"
+    }
+  ],
+  "source_files": [
+    {
+      "dataset": "caiso",
+      "path": "README.md",
+      "url": "https://huggingface.co/datasets/fidel-ts/California_ISO/resolve/75f74f556edd5fbdd080c4db6d4b7547fc331f39/README.md",
+      "bytes": 3455,
+      "sha256": "0a1bc1ceafd5349d41f818d6f31b4f5e3a940d0e166be916b88840a06596a78c"
+    },
+    {
+      "dataset": "caiso",
+      "path": "id_info.json",
+      "url": "https://huggingface.co/datasets/fidel-ts/California_ISO/resolve/75f74f556edd5fbdd080c4db6d4b7547fc331f39/id_info.json",
+      "bytes": 1661,
+      "sha256": "b4e58b20334ddcb4ee0bdcb4d27cd5be901d1af312a8b54baf674451da30eaa8"
+    },
+    {
+      "dataset": "caiso",
+      "path": "id_info_except_battery.json",
+      "url": "https://huggingface.co/datasets/fidel-ts/California_ISO/resolve/75f74f556edd5fbdd080c4db6d4b7547fc331f39/id_info_except_battery.json",
+      "bytes": 1676,
+      "sha256": "66243e77a4f00e00facf45bbe27eef3b580a4e9f00cfc7266714c81db7da568b"
+    },
+    {
+      "dataset": "caiso",
+      "path": "scripts/clean_and_impute.py",
+      "url": "https://huggingface.co/datasets/fidel-ts/California_ISO/resolve/75f74f556edd5fbdd080c4db6d4b7547fc331f39/scripts/clean_and_impute.py",
+      "bytes": 7429,
+      "sha256": "4081158d76f41767d96a9be08bbe19ec2a740a922e65a857e07a6012c503414f"
+    },
+    {
+      "dataset": "caiso",
+      "path": "scripts/embed.py",
+      "url": "https://huggingface.co/datasets/fidel-ts/California_ISO/resolve/75f74f556edd5fbdd080c4db6d4b7547fc331f39/scripts/embed.py",
+      "bytes": 4972,
+      "sha256": "a85ea585958f04ecb97c679048324ddd13fbe551d81387bff4d4c212e4249cd2"
+    },
+    {
+      "dataset": "caiso",
+      "path": "scripts/embed_static.py",
+      "url": "https://huggingface.co/datasets/fidel-ts/California_ISO/resolve/75f74f556edd5fbdd080c4db6d4b7547fc331f39/scripts/embed_static.py",
+      "bytes": 4247,
+      "sha256": "76e7a6bca05723215ee86298905c77a63c34f73d618d011ee5340b7bf4a30aa8"
+    },
+    {
+      "dataset": "caiso",
+      "path": "scripts/merge_all_channel.py",
+      "url": "https://huggingface.co/datasets/fidel-ts/California_ISO/resolve/75f74f556edd5fbdd080c4db6d4b7547fc331f39/scripts/merge_all_channel.py",
+      "bytes": 2893,
+      "sha256": "2ce4cea26c2d48bd6da725586506588cfdf2e009bcc36a0a4017b994868fbe02"
+    },
+    {
+      "dataset": "caiso",
+      "path": "scripts/merge_embed.py",
+      "url": "https://huggingface.co/datasets/fidel-ts/California_ISO/resolve/75f74f556edd5fbdd080c4db6d4b7547fc331f39/scripts/merge_embed.py",
+      "bytes": 3692,
+      "sha256": "ad704006d00ae80f68050ee7f14bc7489f8ebf53f42045dd2c177afeea6ff2e2"
+    },
+    {
+      "dataset": "caiso",
+      "path": "scripts/merge_general_report.py",
+      "url": "https://huggingface.co/datasets/fidel-ts/California_ISO/resolve/75f74f556edd5fbdd080c4db6d4b7547fc331f39/scripts/merge_general_report.py",
+      "bytes": 2749,
+      "sha256": "e03fa2b8331b74df40a037a6e78fbc989b6178599edb7b0118d2ec92e2638bee"
+    },
+    {
+      "dataset": "caiso",
+      "path": "static_info.json",
+      "url": "https://huggingface.co/datasets/fidel-ts/California_ISO/resolve/75f74f556edd5fbdd080c4db6d4b7547fc331f39/static_info.json",
+      "bytes": 2896,
+      "sha256": "3ef39c6a2ae0d8a0cc6722d293cf3eee5754277024b7479a811f546cc104b63a"
+    },
+    {
+      "dataset": "caiso",
+      "path": "static_info_demand.json",
+      "url": "https://huggingface.co/datasets/fidel-ts/California_ISO/resolve/75f74f556edd5fbdd080c4db6d4b7547fc331f39/static_info_demand.json",
+      "bytes": 770,
+      "sha256": "6725382afaad64eef85bb20f3e497245319901f861c62fa3f133b22e3accfa86"
+    },
+    {
+      "dataset": "caiso",
+      "path": "time_series/id_info.json",
+      "url": "https://huggingface.co/datasets/fidel-ts/California_ISO/resolve/75f74f556edd5fbdd080c4db6d4b7547fc331f39/time_series/id_info.json",
+      "bytes": 1661,
+      "sha256": "b4e58b20334ddcb4ee0bdcb4d27cd5be901d1af312a8b54baf674451da30eaa8"
+    },
+    {
+      "dataset": "jena",
+      "path": "README.md",
+      "url": "https://huggingface.co/datasets/fidel-ts/Jena_Atmospheric_Physics/resolve/c8da24175c7aabe5c3b02b503e4c5afe44a605fd/README.md",
+      "bytes": 3530,
+      "sha256": "ba94be88ea5694fb9d7d2101927b1a27bb3bd53a0e878dff54a20aabea98dc91"
+    },
+    {
+      "dataset": "jena",
+      "path": "id_info.json",
+      "url": "https://huggingface.co/datasets/fidel-ts/Jena_Atmospheric_Physics/resolve/c8da24175c7aabe5c3b02b503e4c5afe44a605fd/id_info.json",
+      "bytes": 63,
+      "sha256": "949eda4fc6edd7028331767aaa331d60c331a1d6b286e45ec71b424b83c815d7"
+    },
+    {
+      "dataset": "jena",
+      "path": "scripts/embed.py",
+      "url": "https://huggingface.co/datasets/fidel-ts/Jena_Atmospheric_Physics/resolve/c8da24175c7aabe5c3b02b503e4c5afe44a605fd/scripts/embed.py",
+      "bytes": 6066,
+      "sha256": "0525696cea1419ad491d68083c7840264c06e356550bbbf24b8e892d47f2fe41"
+    },
+    {
+      "dataset": "jena",
+      "path": "scripts/embed_static.py",
+      "url": "https://huggingface.co/datasets/fidel-ts/Jena_Atmospheric_Physics/resolve/c8da24175c7aabe5c3b02b503e4c5afe44a605fd/scripts/embed_static.py",
+      "bytes": 4104,
+      "sha256": "de58f406953079313bd4fa8628df74daf862c6e36c0dbd36c332646d94e04dae"
+    },
+    {
+      "dataset": "jena",
+      "path": "static_info.json",
+      "url": "https://huggingface.co/datasets/fidel-ts/Jena_Atmospheric_Physics/resolve/c8da24175c7aabe5c3b02b503e4c5afe44a605fd/static_info.json",
+      "bytes": 3814,
+      "sha256": "32e17fe7a8f8178ab0196e3510d909f571fc038f8d20e52975c39e903a0ce489"
+    },
+    {
+      "dataset": "jena",
+      "path": "time_series/id_info.json",
+      "url": "https://huggingface.co/datasets/fidel-ts/Jena_Atmospheric_Physics/resolve/c8da24175c7aabe5c3b02b503e4c5afe44a605fd/time_series/id_info.json",
+      "bytes": 63,
+      "sha256": "949eda4fc6edd7028331767aaa331d60c331a1d6b286e45ec71b424b83c815d7"
+    },
+    {
+      "dataset": "official_code",
+      "path": "README.md",
+      "url": "https://raw.githubusercontent.com/VEWOXIC/Universal-Cross-Modal-Time-Series-Forecasting-Pipeline/81043864342e550ed9ffdaa7d9ae6d8420460c6e/README.md",
+      "bytes": 23007,
+      "sha256": "f44d49b69430dfe005a5cfe2f86979c98fed247e315ff524719cbb3c7ca519b4"
+    },
+    {
+      "dataset": "official_code",
+      "path": "data_configs/California_ISO/fullCAISO.yaml",
+      "url": "https://raw.githubusercontent.com/VEWOXIC/Universal-Cross-Modal-Time-Series-Forecasting-Pipeline/81043864342e550ed9ffdaa7d9ae6d8420460c6e/data_configs/California_ISO/fullCAISO.yaml",
+      "bytes": 300,
+      "sha256": "de4c637d9d6a2c92d3677a0515089752213abdacea1c55b0669292b53ba8f128"
+    },
+    {
+      "dataset": "official_code",
+      "path": "data_configs/California_ISO/fullCAISO_H.yaml",
+      "url": "https://raw.githubusercontent.com/VEWOXIC/Universal-Cross-Modal-Time-Series-Forecasting-Pipeline/81043864342e550ed9ffdaa7d9ae6d8420460c6e/data_configs/California_ISO/fullCAISO_H.yaml",
+      "bytes": 335,
+      "sha256": "2ce2a85d2c18277322e9e51c810ac410c7cea6cb839f1a0c0e48c5f83a7c104e"
+    },
+    {
+      "dataset": "official_code",
+      "path": "data_configs/California_ISO/fullCAISO_hetero_LLM.yaml",
+      "url": "https://raw.githubusercontent.com/VEWOXIC/Universal-Cross-Modal-Time-Series-Forecasting-Pipeline/81043864342e550ed9ffdaa7d9ae6d8420460c6e/data_configs/California_ISO/fullCAISO_hetero_LLM.yaml",
+      "bytes": 577,
+      "sha256": "2c81bfad5755444e1beb74e527201161314c918b4c8896a5f3b74f8c8ddc612a"
+    },
+    {
+      "dataset": "official_code",
+      "path": "data_configs/California_ISO/fullCAISO_hetero_TGTSF_H.yaml",
+      "url": "https://raw.githubusercontent.com/VEWOXIC/Universal-Cross-Modal-Time-Series-Forecasting-Pipeline/81043864342e550ed9ffdaa7d9ae6d8420460c6e/data_configs/California_ISO/fullCAISO_hetero_TGTSF_H.yaml",
+      "bytes": 631,
+      "sha256": "34ceead0b910f9baa25c1d72f632cf15da35db1b1ec4a3a61e3bd9cc25cc25d5"
+    },
+    {
+      "dataset": "official_code",
+      "path": "data_configs/Jena_Atmospheric_Physics/fullJAP.yaml",
+      "url": "https://raw.githubusercontent.com/VEWOXIC/Universal-Cross-Modal-Time-Series-Forecasting-Pipeline/81043864342e550ed9ffdaa7d9ae6d8420460c6e/data_configs/Jena_Atmospheric_Physics/fullJAP.yaml",
+      "bytes": 283,
+      "sha256": "c7d1892c347a4bb81f678bd1b1580b5eb6002b13ec3d173d9fc7c7ae745f4077"
+    },
+    {
+      "dataset": "official_code",
+      "path": "data_configs/Jena_Atmospheric_Physics/fullJAP_H.yaml",
+      "url": "https://raw.githubusercontent.com/VEWOXIC/Universal-Cross-Modal-Time-Series-Forecasting-Pipeline/81043864342e550ed9ffdaa7d9ae6d8420460c6e/data_configs/Jena_Atmospheric_Physics/fullJAP_H.yaml",
+      "bytes": 293,
+      "sha256": "b64d33ad378b5565c6ac11160e80a1c4455a02dac5cf473910146bf1eabf4e9e"
+    },
+    {
+      "dataset": "official_code",
+      "path": "data_configs/Jena_Atmospheric_Physics/fullJAP_hetero_LLM.yaml",
+      "url": "https://raw.githubusercontent.com/VEWOXIC/Universal-Cross-Modal-Time-Series-Forecasting-Pipeline/81043864342e550ed9ffdaa7d9ae6d8420460c6e/data_configs/Jena_Atmospheric_Physics/fullJAP_hetero_LLM.yaml",
+      "bytes": 564,
+      "sha256": "59f035677ba435d5e62c988b005e4c569b0217cbbc7da15347926912abc4ab82"
+    },
+    {
+      "dataset": "official_code",
+      "path": "data_configs/Jena_Atmospheric_Physics/fullJAP_hetero_TGTSF_H.yaml",
+      "url": "https://raw.githubusercontent.com/VEWOXIC/Universal-Cross-Modal-Time-Series-Forecasting-Pipeline/81043864342e550ed9ffdaa7d9ae6d8420460c6e/data_configs/Jena_Atmospheric_Physics/fullJAP_hetero_TGTSF_H.yaml",
+      "bytes": 566,
+      "sha256": "e41b606fa091ef123338a29e3d2e1ac4af1df8c537bc9c8be87181548c7b51d4"
+    },
+    {
+      "dataset": "official_code",
+      "path": "data_provider/data_factory.py",
+      "url": "https://raw.githubusercontent.com/VEWOXIC/Universal-Cross-Modal-Time-Series-Forecasting-Pipeline/81043864342e550ed9ffdaa7d9ae6d8420460c6e/data_provider/data_factory.py",
+      "bytes": 12672,
+      "sha256": "0ca9d1990222acb06812c0ebeb1015ebb7b926e55b5ea9d79895a057e00d20b7"
+    },
+    {
+      "dataset": "official_code",
+      "path": "data_provider/data_helper.py",
+      "url": "https://raw.githubusercontent.com/VEWOXIC/Universal-Cross-Modal-Time-Series-Forecasting-Pipeline/81043864342e550ed9ffdaa7d9ae6d8420460c6e/data_provider/data_helper.py",
+      "bytes": 7060,
+      "sha256": "03936dbde1fc44463a4a519a4f0ed1da38a9fd0b43a708d6d6f36949b70d0c0a"
+    },
+    {
+      "dataset": "official_code",
+      "path": "data_provider/data_loader.py",
+      "url": "https://raw.githubusercontent.com/VEWOXIC/Universal-Cross-Modal-Time-Series-Forecasting-Pipeline/81043864342e550ed9ffdaa7d9ae6d8420460c6e/data_provider/data_loader.py",
+      "bytes": 46245,
+      "sha256": "513658db67bb501b9d62a97420a042c308dacbc5e658542072d998e6eecf3537"
+    },
+    {
+      "dataset": "official_code",
+      "path": "model_configs/general/DLinear.yaml",
+      "url": "https://raw.githubusercontent.com/VEWOXIC/Universal-Cross-Modal-Time-Series-Forecasting-Pipeline/81043864342e550ed9ffdaa7d9ae6d8420460c6e/model_configs/general/DLinear.yaml",
+      "bytes": 54,
+      "sha256": "cadd5dedd3c26f7da017d4851f2b1dc26ef8b2b0df63c5822297bed7079130e4"
+    },
+    {
+      "dataset": "official_code",
+      "path": "run.py",
+      "url": "https://raw.githubusercontent.com/VEWOXIC/Universal-Cross-Modal-Time-Series-Forecasting-Pipeline/81043864342e550ed9ffdaa7d9ae6d8420460c6e/run.py",
+      "bytes": 7181,
+      "sha256": "c2c26cc042408b52ab2e4720a3ea7fd98895559670c975e56491f1053c9a2411"
+    },
+    {
+      "dataset": "official_code",
+      "path": "scripts/California_ISO/TGTSF.sh",
+      "url": "https://raw.githubusercontent.com/VEWOXIC/Universal-Cross-Modal-Time-Series-Forecasting-Pipeline/81043864342e550ed9ffdaa7d9ae6d8420460c6e/scripts/California_ISO/TGTSF.sh",
+      "bytes": 437,
+      "sha256": "75a9e2e7945f713c573c91bf4dc281e6f6dbbbb7e4ae358dd188389af9f16b6d"
+    },
+    {
+      "dataset": "official_code",
+      "path": "scripts/California_ISO/dlinear.sh",
+      "url": "https://raw.githubusercontent.com/VEWOXIC/Universal-Cross-Modal-Time-Series-Forecasting-Pipeline/81043864342e550ed9ffdaa7d9ae6d8420460c6e/scripts/California_ISO/dlinear.sh",
+      "bytes": 388,
+      "sha256": "0c0f06cc8ea0b4f5c78a63872b84a8c59f11aa087679634aeb52b8c5fe528118"
+    },
+    {
+      "dataset": "official_code",
+      "path": "scripts/California_ISO/itrans.sh",
+      "url": "https://raw.githubusercontent.com/VEWOXIC/Universal-Cross-Modal-Time-Series-Forecasting-Pipeline/81043864342e550ed9ffdaa7d9ae6d8420460c6e/scripts/California_ISO/itrans.sh",
+      "bytes": 379,
+      "sha256": "5b2f23ce5818a534ce1d3dbaf9fd4ac6c52fc93e7bc6805e46de5e4a6320607f"
+    },
+    {
+      "dataset": "official_code",
+      "path": "scripts/California_ISO/patchTST.sh",
+      "url": "https://raw.githubusercontent.com/VEWOXIC/Universal-Cross-Modal-Time-Series-Forecasting-Pipeline/81043864342e550ed9ffdaa7d9ae6d8420460c6e/scripts/California_ISO/patchTST.sh",
+      "bytes": 386,
+      "sha256": "c5132cd9a6542260fe2b288dcfed95b79dcf6f55776be0c122bf67c8429aedb2"
+    },
+    {
+      "dataset": "official_code",
+      "path": "scripts/Jena_Atmospheric_Physics/TGTSF.sh",
+      "url": "https://raw.githubusercontent.com/VEWOXIC/Universal-Cross-Modal-Time-Series-Forecasting-Pipeline/81043864342e550ed9ffdaa7d9ae6d8420460c6e/scripts/Jena_Atmospheric_Physics/TGTSF.sh",
+      "bytes": 448,
+      "sha256": "caaa362df4297d0572139b14c5a2950e1733fc840f0117ff1e3368f4dd681b31"
+    },
+    {
+      "dataset": "official_code",
+      "path": "scripts/Jena_Atmospheric_Physics/dlinear.sh",
+      "url": "https://raw.githubusercontent.com/VEWOXIC/Universal-Cross-Modal-Time-Series-Forecasting-Pipeline/81043864342e550ed9ffdaa7d9ae6d8420460c6e/scripts/Jena_Atmospheric_Physics/dlinear.sh",
+      "bytes": 362,
+      "sha256": "1c7e5710bdc19bcd4a0118b8c7878d2f1995a14fb2bfcf4f21dc7b18a93afc11"
+    },
+    {
+      "dataset": "official_code",
+      "path": "scripts/Jena_Atmospheric_Physics/itrans.sh",
+      "url": "https://raw.githubusercontent.com/VEWOXIC/Universal-Cross-Modal-Time-Series-Forecasting-Pipeline/81043864342e550ed9ffdaa7d9ae6d8420460c6e/scripts/Jena_Atmospheric_Physics/itrans.sh",
+      "bytes": 377,
+      "sha256": "01595b84f1f813107e03e5a933b824d1c52cdfe69bdc6b7a921ede68431bc50a"
+    },
+    {
+      "dataset": "official_code",
+      "path": "scripts/Jena_Atmospheric_Physics/patchTST.sh",
+      "url": "https://raw.githubusercontent.com/VEWOXIC/Universal-Cross-Modal-Time-Series-Forecasting-Pipeline/81043864342e550ed9ffdaa7d9ae6d8420460c6e/scripts/Jena_Atmospheric_Physics/patchTST.sh",
+      "bytes": 369,
+      "sha256": "e83fbff897e1666ad59ccba05b73f3fccd67e233d6029661c4ef35d73f83d21d"
+    }
+  ],
+  "local_source_sha256": {
+    "models/ReTaMTSF.py": "259854639e02788d7c4fd0cc2ff8861018e64d60641481d6f069848ecf2098ac",
+    "layers/ReTaMTSFLayers.py": "a366f4180f20377e82cda1f854b295337b917e878fb6c0467acc47b47c9abf6e",
+    "data_provider/data_loader.py": "11a78e252a05871d9465923ad67bf539d6c13e323a60b68f6525ae12c7c38269",
+    "data_provider/data_factory.py": "58cdabfca13e5b97d58c30c0c45926b6f287e902b154374a0ddc7e4906736cec",
+    "exp/exp_ReTaMTSF_Climate.py": "dbf0bd64084c154d438837a034b9ebb2afa3765c365e76b4c78233d17a6dd03b",
+    "exp/exp_ReTaMTSF_Energy.py": "f7b87e6cd4644ed655f5672f88cc49c3a18883e5e94b8b9182e7f1dc42b14fd9",
+    "exp/exp_ReTaMTSF_Environment.py": "f97f34cecbd02be23c03af0e55bea77b9564f58ce175446fa5929f166214c973",
+    "exp/exp_ReTaMTSF_Health_US.py": "5b77f3cbda5a64b8b15f7b96b12da206ddf6ec7039eb3ec70e310af94bfcbd1b",
+    "run_ReTaMTSF_Climate.py": "1e421d47a69e3a93bade3ee1610984332ecb3c08a4587d3e9100a499c3724f2d",
+    "run_ReTaMTSF_Energy.py": "2fc8ba021c646241e92c294b8fba58994a7f006af9b866ab52e947f11b543892",
+    "run_ReTaMTSF_Environment.py": "d212c778cb7417d5c8bd2d52040708d8fa28ffa71ff6bdc715e86d30647416b1",
+    "run_ReTaMTSF_Health_US.py": "6a43632f436c08a7a1878bd7adbadad342ee723abfaec948ad5d9f4a546b8411",
+    "utils/Coherence_Compute.py": "9b8ef928a8961d618137ca648b3102dac3bab9b8d808a7651a605b301dcadbe8",
+    "utils/Correlation_Compute.py": "5c8d39b560410abe95736162e6431bcc78e7a4c0c4365c1577d3e5a736e55440",
+    "pre_process/Time-MMD/Climate/ChannelDescription_Pack.py": "5ea8371642407cd07dbd2bb9a0b43e29e0f03c61187e03ed821335f2839194b3",
+    "pre_process/Time-MMD/Climate/NewsDatabasePre_embed.py": "9f90a990c5241b944a81ae7d9890ce43c24ecab9bcaa81177387713e590a9b66",
+    "pre_process/Time-MMD/Climate/NumericalPackage.py": "daa18168d4a96e5fe3072de7284dd9f44299ad93891f368d6dd0c76320a60bfc",
+    "pre_process/Time-MMD/Climate/QueryText_Pack.py": "5ea8371642407cd07dbd2bb9a0b43e29e0f03c61187e03ed821335f2839194b3",
+    "pre_process/Time-MMD/Climate/TextPackage.py": "db7f10e8a385adb70645de953157de3c2e964d94a6adeb8b5e13994816c55007",
+    "pre_process/Time-MMD/Climate/Text_preembedding.py": "89f23516f8553acc08b2617f792e70c8a7a73afb3dc64dc0b71a4f37313ab0df",
+    "pre_process/Time-MMD/Climate/querytext_preembedding.py": "89f23516f8553acc08b2617f792e70c8a7a73afb3dc64dc0b71a4f37313ab0df",
+    "pre_process/Time-MMD/Energy/ChannelDescription_Pack.py": "15b784ac804b83b329dfb2ab6433b62af555ccba52ca4bd4cf22a766ebc3aba2",
+    "pre_process/Time-MMD/Energy/NewsDatabasePre_embed.py": "600d72a86cac057b995b068547c2fba3dda2491ebf136f03e281016ad5ea7689",
+    "pre_process/Time-MMD/Energy/NumericalPackage.py": "5144ddaf8940508630dcfbbae5b1128e6df921e043f2554b7dff93b593b909c0",
+    "pre_process/Time-MMD/Energy/QueryText_Pack.py": "15b784ac804b83b329dfb2ab6433b62af555ccba52ca4bd4cf22a766ebc3aba2",
+    "pre_process/Time-MMD/Energy/TextPackage.py": "de89c4a307dca7500ed65f8d45c3ed6b4719ccd2b1781d229b5ee8e97175bdcf",
+    "pre_process/Time-MMD/Energy/Text_preembedding.py": "33d870113f547f1f1185c434045405a6ca719cf6507ed37125b35d1f5d97bfcb",
+    "pre_process/Time-MMD/Energy/querytext_preembedding.py": "33d870113f547f1f1185c434045405a6ca719cf6507ed37125b35d1f5d97bfcb",
+    "pre_process/Time-MMD/Environment/ChannelDescription_Pack.py": "d3a5fe792449bd87e387a6efc8a4f2ec74b66db251a3381e901b7f45a10f7a09",
+    "pre_process/Time-MMD/Environment/NewsDatabasePre_embed.py": "79c036f5c29c6ff60baf431b55b9fe029bc9189125b489683cd8550c3dc83826",
+    "pre_process/Time-MMD/Environment/NumericalPackage.py": "37d17f0f0b1308e6cd1c3a2c1f45ebced37c288641c205ed8759ac1ecf415666",
+    "pre_process/Time-MMD/Environment/QueryText_Pack.py": "d3a5fe792449bd87e387a6efc8a4f2ec74b66db251a3381e901b7f45a10f7a09",
+    "pre_process/Time-MMD/Environment/TextPackage.py": "d991e2b951ff4d1c08198d76aaaec96800fcc789a52d7ec49059c3729b764df5",
+    "pre_process/Time-MMD/Environment/Text_preembedding.py": "ff3620ac9d3ff917caaa5519eb95a1f683c7335b6346c2845cf2a5aa75fe8112",
+    "pre_process/Time-MMD/Environment/querytext_preembedding.py": "ff3620ac9d3ff917caaa5519eb95a1f683c7335b6346c2845cf2a5aa75fe8112",
+    "pre_process/Time-MMD/Health_US/ChannelDescription_Pack.py": "2e7ff64883daa30487879297e3c2f595378d75e9e073ad6c969228c85c82fd46",
+    "pre_process/Time-MMD/Health_US/NewsDatabasePre_embed.py": "0b067485f086b95d18e556e0edec12fc791cb41a64080c7d752e068a88758dea",
+    "pre_process/Time-MMD/Health_US/NumericalPackage.py": "9145a91e98570467f92b088b0feea9986d5d288bd9bbb8d2f94c18ac1594d0ba",
+    "pre_process/Time-MMD/Health_US/QueryText_Pack.py": "2e7ff64883daa30487879297e3c2f595378d75e9e073ad6c969228c85c82fd46",
+    "pre_process/Time-MMD/Health_US/TextPackage.py": "49071d8d27297de848c3a29257ede4c3a0c001867ac4387789cb56ecc59b068a",
+    "pre_process/Time-MMD/Health_US/Text_preembedding.py": "6d900b9ab9c543d6b3527d865fe81ec2b6ae241dd94d29a09e1efeb542fbc514",
+    "pre_process/Time-MMD/Health_US/querytext_preembedding.py": "6d900b9ab9c543d6b3527d865fe81ec2b6ae241dd94d29a09e1efeb542fbc514",
+    "pre_process/Time-MMD/common/newsdatabase_pre_embed_multi.py": "1973cd715d727ca7461914ae8b0a9be1bc648fbdc1ca1510970c6774a38cb987",
+    "pre_process/Time-MMD/common/querytext_preembedding_multi.py": "ca10abdb42934bd2878c4d3646c1dab7029197acacb68696662221c37e9e0541",
+    "baseline/ReTime_real_data.py": "b0499f98c8d700ec1edd18c15d81765fff5cbb372af40c1ae967159624de836c",
+    "run_benchmark_Environment.py": "0b7a43185c0bf3a175ee2a97fd58d0efa67e7fcdba543d1cf7f531fa77dd5738"
+  },
+  "checks": {
+    "python_ast_files": 46,
+    "forward_local_linear_lines": [
+      380,
+      384
+    ],
+    "single_target_hardcoded_line": 438,
+    "consecutive_indices_lines": [
+      56,
+      236,
+      415,
+      593
+    ],
+    "json_prefixes_bytes_each": 65536,
+    "json_prefix_files": 9,
+    "parquet_tail_bytes_each": 65536,
+    "parquet_tail_files": 3,
+    "model_forward_run": false,
+    "full_data_read": false,
+    "pickle_loaded": false,
+    "training_run": false,
+    "tiny_stdlib_examples": {
+      "original_indices_ast_stride_3": [
+        5,
+        6,
+        7,
+        8
+      ],
+      "independent_crop_label_overlap_rows": 100,
+      "permuted_scaler_old_vs_correct": [
+        99,
+        -1
+      ],
+      "ts_only_L360_H720_output_positions": 360,
+      "official_ca_region_ast": [
+        "weather_report",
+        "weather_report"
+      ]
+    }
+  },
+  "limitations": [
+    "No full row scan: duplicate timestamps, exact gap locations, sentinel rates and text coverage remain unverified.",
+    "No independent issued_at / available_at / valid_end in sampled weather records; date keys alone do not establish causal availability.",
+    "Embedding producer scripts specify Jina v3 truncate_dim=256; serialized array shapes not independently verified.",
+    "Parquet schema/statistics parsed from compact-protocol footer only; cross-check with PyArrow in stage 1."
+  ]
+}
