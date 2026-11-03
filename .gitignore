@@ -7409,3 +7409,12 @@ _pydeps/six-1.17.0.dist-info/METADATA
 _pydeps/six-1.17.0.dist-info/RECORD
 _pydeps/six-1.17.0.dist-info/top_level.txt
 _pydeps/six-1.17.0.dist-info/WHEEL
+
+# PIVOT / Fidel-TS data preparation (keep source, configs, tests and docs tracked).
+/dataset/Fidel-TS/
+/artifacts/fidel_ts/
+/.venv-fidel-ts/
+/scripts/fidel_ts/__pycache__/
+/scripts/__pycache__/
+/tests/fidel_ts/__pycache__/
+/.pytest_cache/

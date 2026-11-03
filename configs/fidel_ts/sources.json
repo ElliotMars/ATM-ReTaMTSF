@@ -1,0 +1,85 @@
+{
+  "schema_version": 1,
+  "stage0_evidence": "docs/fidel_ts/00_audit_evidence.json",
+  "datasets": {
+    "caiso": {
+      "repository": "fidel-ts/California_ISO",
+      "directory": "California_ISO",
+      "revision": "75f74f556edd5fbdd080c4db6d4b7547fc331f39",
+      "primary_file": "time_series/all_except_battery.parquet",
+      "time_column": "Time",
+      "subject_id": "all_except_battery",
+      "expected_interval_seconds": 300,
+      "static_info_file": "static_info_except_battery.json",
+      "static_subject_candidates": ["all_except_battery", "all"],
+      "channel_aliases": {},
+      "expected_channels": [
+        "Biogas CO2", "Biomass CO2", "Natural Gas CO2", "Coal CO2",
+        "Imports CO2", "Geothermal CO2", "Day ahead forecast",
+        "Hour ahead forecast", "Current demand", "SOLAR", "WIND",
+        "GEOTHERMAL", "BIOMASS", "BIOGAS", "SMALL HYDRO", "COAL",
+        "NUCLEAR", "NATURAL GAS", "LARGE HYDRO", "IMPORTS"
+      ],
+      "profiles": {
+        "numerical": [
+          "README.md", "id_info*.json", "static_info*.json",
+          "time_series/id_info*.json", "time_series/all_except_battery.parquet"
+        ],
+        "standard": [
+          "README.md", "id_info*.json", "static_info*.json",
+          "time_series/id_info*.json", "time_series/all_except_battery.parquet",
+          "weather/san-diego/weather_report/*/*.json",
+          "weather/san-francisco/weather_report/*/*.json", "scripts/*.py"
+        ],
+        "provenance": [
+          "README.md", "id_info*.json", "static_info*.json",
+          "time_series/id_info*.json", "time_series/all_except_battery.parquet",
+          "weather/san-diego/weather_report/*/*.json",
+          "weather/san-francisco/weather_report/*/*.json", "scripts/*.py",
+          "raw_data/*/*.parquet", "weather/san-diego/raw_data/*",
+          "weather/san-francisco/raw_data/*"
+        ]
+      }
+    },
+    "jena": {
+      "repository": "fidel-ts/Jena_Atmospheric_Physics",
+      "directory": "Jena_Atmospheric_Physics",
+      "revision": "c8da24175c7aabe5c3b02b503e4c5afe44a605fd",
+      "primary_file": "time_series/weather_large.parquet",
+      "time_column": "Date Time",
+      "subject_id": "weather_large",
+      "expected_interval_seconds": 600,
+      "static_info_file": "static_info.json",
+      "static_subject_candidates": ["weather_large"],
+      "channel_aliases": {
+        "rho (g/m**3)": "rho (g/m³)",
+        "SWDR (W/m�)": "SWDR (W/m²)",
+        "PAR (�mol/m�/s)": "PAR (μmol/m²/s)",
+        "max. PAR (�mol/m�/s)": "max. PAR (μmol/m²/s)"
+      },
+      "expected_channels": [
+        "p (mbar)", "T (degC)", "Tpot (K)", "Tdew (degC)", "rh (%)",
+        "VPmax (mbar)", "VPact (mbar)", "VPdef (mbar)", "sh (g/kg)",
+        "H2OC (mmol/mol)", "rho (g/m**3)", "wv (m/s)", "max. wv (m/s)",
+        "wd (deg)", "rain (mm)", "raining (s)", "SWDR (W/m�)",
+        "PAR (�mol/m�/s)", "max. PAR (�mol/m�/s)", "Tlog (degC)", "CO2 (ppm)"
+      ],
+      "profiles": {
+        "numerical": [
+          "README.md", "id_info.json", "static_info.json",
+          "time_series/id_info.json", "time_series/weather_large.parquet"
+        ],
+        "standard": [
+          "README.md", "id_info.json", "static_info.json",
+          "time_series/id_info.json", "time_series/weather_large.parquet",
+          "weather/weather_report/*/*.json", "scripts/*.py"
+        ],
+        "provenance": [
+          "README.md", "id_info.json", "static_info.json",
+          "time_series/id_info.json", "time_series/weather_large.parquet",
+          "weather/weather_report/*/*.json", "scripts/*.py", "raw_data/*.parquet"
+        ]
+      }
+    }
+  }
+}
