@@ -5,7 +5,7 @@ import subprocess
 import sys
 import time
 import yaml
-from .common import ROOT,ART,DATA,HORIZONS,digest,read_json,write_json,verify
+from .common import ROOT,ART,DATA,HORIZONS,digest,read_json,write_json,verify,sha
 from .configurations import MAIN,ABLATIONS,configuration,generate
 
 def plans(action,include_h336=False):
@@ -23,7 +23,7 @@ def main():
     if not a.execute:
         print(__import__('json').dumps({'dry_run':True,'network':False,'action':a.action,'jobs':selected,'formal_jobs':sum(x.get('formal_training',False) for x in selected)},indent=2));return
     if a.action=='prepare':
-        for module in ('acquire','timezone','prepare','configurations','audit'):
+        for module in ('acquire','timezone','provenance','prepare','configurations','audit'):
             subprocess.run([sys.executable,'-m','pivot_stage2_v2.'+module],cwd=ROOT,check=True)
         return
     if a.action=='validate':
@@ -38,6 +38,9 @@ def main():
         print(collect());return
     admission=read_json(ART/'admission.json')
     if not admission.get('main_enabled'):raise SystemExit('v2 data audit has not admitted Jena; no training started')
+    expected={'gfs':sha(DATA/'gfs/_SUCCESS.json'),**{tz:sha(DATA/('jena_'+tz)/'_SUCCESS.json') for tz in ('fixed_cet','berlin','utc')}}
+    if admission.get('data_bindings')!=expected:
+        raise SystemExit('Admission belongs to different prepared data; run validate_ready --execute. No training started.')
     from .train import run,CODE_BINDING
     summaries=[]
     for job in selected:
@@ -46,7 +49,10 @@ def main():
         directory=ART/('smoke' if job['smoke'] else 'experiments')/f"H{job['horizon']}"/job['variant']/f"seed{job['seed']}"
         if (directory/'_SUCCESS.json').exists():
             record=verify(directory)
-            if record['binding']['code_sha256']==CODE_BINDING and record['config_digest']==digest(config):
+            binding=record['binding']
+            same_data=(binding['prepared_data_sha256']==sha(Path(config['data_directory'])/'_SUCCESS.json') and
+                       binding['gfs_data_sha256']==sha(DATA/'gfs/_SUCCESS.json'))
+            if binding['code_sha256']==CODE_BINDING and record['config_digest']==digest(config) and same_data:
                 summaries.append(read_json(directory/'summary.json'));continue
             if not job['smoke']:raise ValueError('Successful formal result differs; preserve and create a new experiment version')
             retired=ART/'retired_smoke'/str(time.time_ns())/f"H{job['horizon']}"/job['variant'];retired.parent.mkdir(parents=True,exist_ok=True);directory.rename(retired)

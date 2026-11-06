@@ -76,7 +76,9 @@ def evidence():
 def forecasts():
     c=Client(); batches=[]
     # Two days before the first training label cover alternative UTC mappings.
-    dates=pd.date_range('2021-03-30','2025-07-01',freq='MS').union(pd.DatetimeIndex(['2021-03-30','2025-07-01'])).sort_values()
+    # The UTC sensitivity's last :10 target needs the next day's 00:00
+    # forecast as its right interpolation endpoint. Fetch one padding day.
+    dates=pd.date_range('2021-03-30','2025-07-02',freq='MS').union(pd.DatetimeIndex(['2021-03-30','2025-07-02'])).sort_values()
     starts=[pd.Timestamp('2021-03-30')]+[x for x in dates if x>pd.Timestamp('2021-03-30')]
     for i,start in enumerate(starts[:-1]):
         end=starts[i+1]-pd.Timedelta(days=1)

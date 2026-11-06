@@ -99,16 +99,21 @@ def gfs():
         torch.set_num_threads(8)
         vectors=encoder.encode(descriptors);np.save(directory/'embeddings.npy',vectors)
         static=read_json(ROOT/'dataset/Fidel-TS/raw/Jena_Atmospheric_Physics/static_info.json')['channel_info']['weather_large']
+        aliases=read_json(ROOT/'configs/fidel_ts/sources.json')['datasets']['jena']['channel_aliases']
         channels=read_json(DATA/'jena_fixed_cet/manifest.json')['channels']
         queries=[]
         for c in channels:
             # Exact source channel names may contain historical encoding damage.
-            desc=static.get(c,c)
+            canonical=aliases.get(c,c)
+            if canonical not in static:
+                raise ValueError('Missing source channel description: '+c)
+            desc=static[canonical]
             for temp in ('cold below 5 degrees Celsius','mild 5 to 20 degrees Celsius','warm above 20 degrees Celsius'):
                 for humidity in ('relative humidity below 60 percent','relative humidity at least 60 percent'):
                     for pressure in ('air pressure below 1000 millibar','air pressure at least 1000 millibar'):
                         queries.append(f'Jena weather prediction of {c}: {desc[:150]}. Historical air temperature {temp}; {humidity}; {pressure}. Relevant GFS 2-meter temperature forecast.')
         np.save(directory/'queries.npy',encoder.encode(queries).reshape(21,12,384))
+        write_json(directory/'query_templates.json',{'channels':channels,'queries_per_channel':12,'texts':queries,'all_channel_descriptions_resolved':True})
         meta={'model':'gfs_global','api':'https://previous-runs-api.open-meteo.com/v1/forecast','archive_kind':acq['archive_kind'],
           'requested_coordinate':{'latitude':50.91,'longitude':11.56,'elevation_m':220},'batches':acq['batches'],
           'units':'degree_Celsius','nominal_leads_hours':[24*k for k in range(1,8)],'verified_run_time':None,'verified_publication_time':None,

@@ -30,6 +30,14 @@ def coverage(ds,lag):
 
 def audit():
     store=shared_store(str((DATA/'gfs').resolve()));assert store.meta['never_generated_from_Jena_or_reanalysis']
+    for batch in store.meta['batches']:
+        assert sha(batch['path']) == batch['sha256'], 'Original GFS response hash changed'
+    native_mapping=DATA/'native_time_mapping'
+    if (native_mapping/'_SUCCESS.json').exists():
+        verify(native_mapping)
+        native=pd.read_parquet(native_mapping/'native_mapping.parquet',columns=['original_naive_timestamp','fixed_CET_UTC'])
+        converted=pd.DatetimeIndex(native.fixed_CET_UTC).tz_localize(None)
+        assert np.array_equal(converted.asi8,pd.DatetimeIndex(native.original_naive_timestamp).asi8-HOUR)
     reports={};scaler_seen=None
     for tz in TZS:
         directory=DATA/('jena_'+tz);verify(directory);meta=read_json(directory/'manifest.json')
@@ -65,27 +73,35 @@ def audit():
         frame=pd.read_parquet(n2/split/'timestamps.parquet');vals=pd.read_parquet(n2/split/'values.parquet').to_numpy();mask=pd.read_parquet(n2/split/'validity_mask.parquet').to_numpy(bool)
         original[split]=(frame.timestamp.to_numpy().view('i8'),vals,mask)
     oldt=np.concatenate([x[0] for x in original.values()]);oldv=np.concatenate([x[1] for x in original.values()]);oldm=np.concatenate([x[2] for x in original.values()])
-    for split in ('train','validation','test'):
-        z=np.load(DATA/'jena_fixed_cet'/f'{split}.npz');indices=np.searchsorted(oldt,z['naive_times'])
-        assert np.array_equal(oldt[indices],z['naive_times']) and np.array_equal(oldm[indices],z['mask'])
-        assert np.array_equal(oldv[indices],z['raw_values'],equal_nan=True)
+    for tz in TZS:
+        for split in ('train','validation','test'):
+            z=np.load(DATA/('jena_'+tz)/f'{split}.npz');indices=np.searchsorted(oldt,z['naive_times'])
+            assert np.array_equal(oldt[indices],z['naive_times']) and np.array_equal(oldm[indices],z['mask'])
+            assert np.array_equal(oldv[indices],z['raw_values'],equal_nan=True)
     # Actual seasonal samples and identity of the full raw/text candidate set.
-    seasonal=[]
+    seasonal=[];document_examples=[]
     for split,wanted in [('train','2022-01-15 12:10'),('validation','2024-07-15 12:10'),('test','2025-03-30 12:10')]:
         ds=MIMODataset(DATA/'jena_fixed_cet',split,168,check_hashes=False)
         i=int(np.argmin(abs(ds.naive_times[ds.starts+359]-pd.Timestamp(wanted).value)));sample=ds[i]
         assert sample['history_end_time']<=sample['origin_time']<sample['first_target_time'] and sample['text_mask'].any()
         assert int(sample['gfs_mask'].sum())==len(sample['gfs_pool_ids'])
         origin=sample['origin_time']
+        stop=int(ds.starts[i])+ds.lookback
+        _,_,facts,_=ds.store.pool(origin,ds.times[stop:stop+168],12)
+        for fact in facts[np.linspace(0,len(facts)-1,12,dtype=int)]:
+            document_examples.append({'split':split,**ds.store.metadata(int(fact),origin,12)})
         seasonal.append({'split':split,'wanted_history_end_naive':wanted,'actual_history_end_utc':pd.Timestamp(sample['history_end_time'],tz='UTC').isoformat(),
           'forecast_origin_utc':pd.Timestamp(origin,tz='UTC').isoformat(),'first_target_utc':pd.Timestamp(sample['first_target_time'],tz='UTC').isoformat(),
           'candidate_facts':len(sample['gfs_pool_ids']),'legal_target_hours':int(sample['gfs_mask'].any(-1).sum()),'text_mask_nonempty':True,
           'retrieval_trace':sample['text_metadata'][1]})
-    write_json(ART/'data_acceptance.json',{'timezone_hypotheses':reports,'raw_N2_values_masks_unchanged':True,'original_N2_success_sha256':sha(n2/'_SUCCESS.json'),
+    write_json(ART/'data_acceptance.json',{'timezone_hypotheses':reports,'raw_N2_values_masks_unchanged':True,'all_timezone_bundles_match_identical_N2_values_and_masks':True,'original_N2_success_sha256':sha(n2/'_SUCCESS.json'),
       'seasonal_real_samples':seasonal,'gfs_manifest_sha256':sha(DATA/'gfs/manifest.json'),'strict_historical_publication_verified':False})
+    import json
+    (ART/'gfs_document_examples.jsonl').write_text(''.join(json.dumps(row,ensure_ascii=False)+'\n' for row in document_examples))
     decision=read_json(ART/'timezone_decision.json')
     main=all(reports['fixed_cet']['splits'][s]['horizons'][str(h)]['gfs_coverage']['12']['origins_with_any_ratio']>0 for s in ('train','validation','test') for h in HORIZONS[:3])
     write_json(ART/'admission.json',{'dataset':'jena','decision':'CONDITIONAL','main_enabled':main,'timezone':decision['selected'],'timezone_confidence':decision['confidence'],
+      'data_bindings':{'gfs':sha(DATA/'gfs/_SUCCESS.json'),**{tz:sha(DATA/('jena_'+tz)/'_SUCCESS.json') for tz in TZS}},
       'core_horizons':[24,72,168],'optional_horizon':336,'fixed_channels':21,'lookback':360,'strict_verified_t1':False,'formal_training_started':False,
       'required_disclosures':['fixed_nominal_lead_archive_not_verified_individual_GFS_Run','availability_reference_plus_latency_assumption','station_end_of_interval_plus10min_observation_receipt_assumption',
           'hourly_GFS_forecasts_interpolated_to_N2_10minute_phase_both_endpoints_legal','MiniLM_postdates_historical_task_shared_offline_prior','upstream_Fidel_interpolation_risk_not_removed']})

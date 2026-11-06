@@ -99,6 +99,7 @@ class MIMODataset(Dataset):
         bin_id,query_stats=query_bin(raw_x,xmask,self.channels)
         shape=(len(self.channels),self.top_k,384)
         vectors=np.zeros(shape,np.float32);tmask=np.zeros(shape[:-1],bool);traces=[[] for _ in self.channels]
+        time_features=np.zeros((*shape[:-1],3),np.float32)
         pool_ids=[f'gfs:{int(self.store.valid_times[f//7])}:{(int(f)%7+1)*24}' for f in facts]
         if len(facts) and self.strategy not in ('none','missing'):
             rr,kk=facts//7,facts%7
@@ -108,8 +109,12 @@ class MIMODataset(Dataset):
             embeddings=self.store.embeddings[template_ids]
             available=self.store.right_source_times[rr]-(kk+1)*24*HOUR+self.lag_hours*HOUR
             ages=(origin-available)/HOUR
+            # Keep target timing explicit in fusion rather than asking a
+            # language embedding to interpret absolute date strings.
+            timing=np.stack(((self.store.valid_times[rr]-origin)/HOUR/168,ages/168,(kk+1)*24/168),axis=-1).astype(np.float32)
             if self.strategy=='mean':
                 vectors[:,0]=embeddings.mean(0);tmask[:,0]=True
+                time_features[:,0]=timing.mean(0)
                 trace={'document_id':'pooled_'+digest(pool_ids),'pool_ids_sha256':digest(pool_ids),'member_count':len(pool_ids),
                     'max_assumed_available_at_ns':int(available.max()),'origin_ns':origin,'asof_legal':True,'query':query_stats}
                 traces=[[trace] for _ in self.channels]
@@ -125,6 +130,7 @@ class MIMODataset(Dataset):
                         if self.strategy=='semantic_temporal':scores+=self.temporal_weight*np.exp(-ages/24)
                     selected=np.lexsort((facts,-scores))[:self.top_k]
                     vectors[c,:len(selected)]=embeddings[selected];tmask[c,:len(selected)]=True
+                    time_features[c,:len(selected)]=timing[selected]
                     for j in selected:
                         fact=int(facts[j])
                         if fact not in metadata:metadata[fact]=self.store.metadata(fact,origin,self.lag_hours)
@@ -136,6 +142,7 @@ class MIMODataset(Dataset):
             'y':torch.from_numpy(y),'y_mask':torch.from_numpy(ymask.copy()),'origin_time':origin,'numeric_time':int(self.naive_times[stop-1]),'origin_utc_ns':origin,
             'history_end_time':history_end,'first_target_time':int(targets[0]),'target_times':torch.from_numpy(targets.copy()),
             'channel_ids':torch.arange(len(self.channels)),'text_embeddings':torch.from_numpy(vectors),'text_mask':torch.from_numpy(tmask),
+            'text_time_features':torch.from_numpy(time_features),
             'text_metadata':traces,'gfs_num':torch.from_numpy(ext),'gfs_mask':torch.from_numpy(external_mask),
             'gfs_pool_ids':pool_ids,'gfs_pool_sha256':digest(pool_ids),'sample_id':digest([self.sample_binding,start]),
             'eligible_document_counts':torch.full((len(self.channels),),len(facts),dtype=torch.long)}

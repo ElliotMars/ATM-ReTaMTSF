@@ -16,7 +16,7 @@ from .data import MIMODataset, loader
 from pivot_stage2.metrics import Accumulator, masked_mse
 from .models import build_model
 
-FEATURES = ("x_num", "x_mask", "text_embeddings", "text_mask", "gfs_num", "gfs_mask")
+FEATURES = ("x_num", "x_mask", "text_embeddings", "text_mask", "text_time_features", "gfs_num", "gfs_mask")
 CODE_BINDING = {"v2/"+name: sha(Path(__file__).parent / name) for name in
                 ("data.py", "models.py", "prepare.py", "timezone.py", "train.py")}
 CODE_BINDING.update({"v1/"+name: sha(Path(__file__).parent.parent / "pivot_stage2" / name)
@@ -126,7 +126,7 @@ def run(config, output, smoke=False, resume=None):
     amp = device.type == "cuda" and config.get("amp", True)
     grad_scaler = torch.amp.GradScaler("cuda", enabled=amp)
     history, best, best_state, first_epoch, patience = [], float("inf"), deepcopy(model.state_dict()), 0, 0
-    binding = {"prepared_data_sha256": sha(data_dir / "_SUCCESS.json"), "gfs_data_sha256": sha(DATA / "gfs/_SUCCESS.json"), "model": model_config, "retrieval": retrieval,
+    binding = {"prepared_data_sha256": sha(data_dir / "_SUCCESS.json"), "gfs_data_sha256": sha(datasets['train'].store.directory / "_SUCCESS.json"), "model": model_config, "retrieval": retrieval,
                "seed": config["seed"], "horizon": horizon, "code_sha256": CODE_BINDING,
                "training": {key: config.get(key) for key in ("batch_size", "learning_rate", "weight_decay", "selection_metric", "patience")}}
     if resume:
