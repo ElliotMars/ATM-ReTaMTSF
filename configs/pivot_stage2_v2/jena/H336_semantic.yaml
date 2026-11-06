@@ -1,0 +1,43 @@
+dataset: jena
+data_directory: /opt/data/private/ATM-ReTaMTSF/dataset/PIVOT/stage2_v2/jena_fixed_cet
+variant: semantic
+enabled: true
+horizon: 336
+optional_horizon: true
+seed: 2024
+formal_seeds:
+- 2024
+- 2025
+- 2026
+device: auto
+cpu_threads: 2
+batch_size: 8
+learning_rate: 0.001
+weight_decay: 0.0001
+epochs: 30
+patience: 5
+amp: true
+selection_metric: mse_standardized
+model:
+  name: pivot
+  dim: 32
+  layers: 1
+  heads: 4
+  patch: 16
+  stride: 8
+  dropout: 0.1
+  use_ctsr: false
+  channel_top_k: 4
+  fusion: cross_attention
+retrieval:
+  strategy: semantic
+  top_k: 4
+  temporal_weight: 0.2
+  lag_hours: 12
+  observation_latency_minutes: 10
+timezone_hypothesis: fixed_cet
+comparison_scope: all_selected_timezone_rows
+information_permission: OpenMeteo GFS fixed nominal lead archive; inferred availability,
+  not verified individual run publication
+origin_pairing_clock: original naive station history-end label; physical UTC retrieval
+  origin stored separately

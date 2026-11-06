@@ -7429,3 +7429,5 @@ _pydeps/six-1.17.0.dist-info/WHEEL
 /.cache/pivot/
 /pivot_stage2/__pycache__/
 /tests/pivot_stage2/__pycache__/
+/pivot_stage2_v2/__pycache__/
+/tests/pivot_stage2_v2/__pycache__/
