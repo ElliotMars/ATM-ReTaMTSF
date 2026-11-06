@@ -7423,3 +7423,9 @@ _pydeps/six-1.17.0.dist-info/WHEEL
 /artifacts/pivot_sources/
 /scripts/pivot_sources/__pycache__/
 /tests/pivot_sources/__pycache__/
+/dataset/PIVOT/
+/artifacts/pivot_stage2/
+/.venv-pivot/
+/.cache/pivot/
+/pivot_stage2/__pycache__/
+/tests/pivot_stage2/__pycache__/

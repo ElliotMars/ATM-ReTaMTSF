@@ -1,0 +1,39 @@
+dataset: jena
+data_directory: /opt/data/private/ATM-ReTaMTSF/dataset/PIVOT/stage2_v1/jena
+variant: without_temporal
+enabled: false
+disabled_reason: external_text_alignment_not_admitted; use numerical controls only
+horizon: 336
+seed: 2024
+formal_seeds:
+- 2024
+- 2025
+- 2026
+device: auto
+cpu_threads: 2
+batch_size: 8
+learning_rate: 0.001
+weight_decay: 0.0001
+epochs: 30
+patience: 5
+amp: true
+selection_metric: mse_standardized
+model:
+  name: pivot
+  dim: 32
+  layers: 1
+  heads: 4
+  patch: 16
+  stride: 8
+  dropout: 0.1
+  use_ctsr: true
+  channel_top_k: 4
+  fusion: cross_attention
+retrieval:
+  strategy: semantic
+  top_k: 4
+  temporal_weight: 0.2
+  lag_hours: 1
+comparison_rule: same prepared windows/scaler/y_mask; text absence never removes a
+  sample
+information_permission: numerical_only_no_clock_guessing

@@ -188,12 +188,18 @@ def price_task(prices, universe, calendar, spec):
         for horizon in spec["horizons"]:
             count = max(0, len(indices) - spec["lookback"] - horizon + 1)
             valid_windows, valid_labels, total_labels = 0, 0, count * horizon * len(universe)
+            valid_input_windows, eligible_masked_windows = 0, 0
             for start in range(count):
+                inputs = indices[start:start + spec["lookback"]]
+                input_count = sum(values[entity][i]["log_return"] is not None for entity in universe for i in inputs)
                 labels = indices[start + spec["lookback"]:start + spec["lookback"] + horizon]
                 nvalid = sum(values[entity][i]["log_return"] is not None for entity in universe for i in labels)
                 valid_labels += nvalid
-                valid_windows += int(nvalid == horizon * len(universe))
+                valid_windows += int(input_count > 0 and nvalid == horizon * len(universe))
+                valid_input_windows += int(input_count > 0)
+                eligible_masked_windows += int(input_count > 0 and nvalid > 0)
             window_info[split]["horizons"][str(horizon)] = {"theoretical_windows": count, "full_universe_valid_label_windows": valid_windows,
+                                                          "valid_input_windows": valid_input_windows, "eligible_masked_windows": eligible_masked_windows,
                                                           "valid_label_occurrences": valid_labels,
                                                           "invalid_label_ratio": 1 - valid_labels / total_labels if total_labels else None}
     all_loaded = len(universe) == 88 and all(entity in prices for entity in universe)
