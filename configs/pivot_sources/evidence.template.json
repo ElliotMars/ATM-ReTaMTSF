@@ -1,0 +1,12 @@
+{
+  "reviewed": false,
+  "role": "REPLACE_WITH_numerical_clock_OR_issuance_OR_creation_OR_historical_reception_OR_historical_publication_OR_model_initialization_OR_official_exchange_calendar",
+  "source_url": null,
+  "local_file": null,
+  "sha256": null,
+  "quote": null,
+  "timezone": null,
+  "bound_primary_sha256": null,
+  "calendar_sha256": null,
+  "note": "Template only. Hash and quote bind bytes; a person must review their actual meaning. Changing reviewed to true without such review is not valid evidence. No generated receipt times or guessed timezones."
+}

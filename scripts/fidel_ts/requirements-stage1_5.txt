@@ -1,0 +1,3 @@
+-r requirements-stage1.txt
+# N1 deliberately uses the same StandardScaler class as the official pipeline.
+scikit-learn>=1.3,<2

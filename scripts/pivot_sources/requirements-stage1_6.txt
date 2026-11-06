@@ -1,0 +1,4 @@
+# User installs only. Nothing installs packages or downloads data implicitly.
+-r ../fidel_ts/requirements-stage1_5.txt
+exchange-calendars>=4.5,<5
+# Optional --grib-inspect additionally needs eccodes and its native library.

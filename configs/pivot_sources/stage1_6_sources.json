@@ -1,0 +1,44 @@
+{
+  "schema_version": 1,
+  "stage": "1.6",
+  "execution_status": "not_executed",
+  "limits": {"max_requests": 12, "max_file_bytes": 2097152, "max_total_bytes": 8388608, "timeout_seconds": 30, "retries": 2, "min_interval_seconds": 1, "max_records": 100},
+  "sources": {
+    "nws": {
+      "dataset": "caiso", "channels": 20, "lookback": 360, "horizons": [24, 72, 168],
+      "n2_directory": "dataset/Fidel-TS/processed/caiso/n2_strict_contiguous",
+      "documentation_urls": ["https://mesonet.agron.iastate.edu/api/", "https://mesonet.agron.iastate.edu/nws/text.php"],
+      "allowed_hosts": ["mesonet.agron.iastate.edu"],
+      "afos_ids": ["AFDMTR", "AFDSGX"],
+      "probe_dates": ["2018-07-15", "2020-07-15", "2021-07-15", "2022-07-15", "2024-07-15"],
+      "numerical_calendar_range": ["2018-04-10", "2025-03-01"],
+      "lag_hours": [0, 1, 3, 6], "historical_endpoint_status": "requires_documentation_bound_request_plan",
+      "timezone_evidence": null
+    },
+    "gfs": {
+      "dataset": "jena", "channels": 21, "lookback": 360, "horizons": [24, 72, 168, 336],
+      "n2_directory": "dataset/Fidel-TS/processed/jena/n2_strict_contiguous",
+      "documentation_urls": ["https://gdex.ucar.edu/datasets/d084001/"],
+      "allowed_hosts": ["gdex.ucar.edu", "rda.ucar.edu", "data.rda.ucar.edu", "nomads.ncep.noaa.gov"],
+      "probe_dates": ["2015-07-15", "2018-07-15", "2020-07-15", "2021-07-15", "2022-07-15", "2024-07-15"],
+      "numerical_calendar_range": ["2015-01-01", "2025-07-01"],
+      "cycles_utc": [0, 6, 12, 18], "leads_hours": [24, 72, 168, 336], "lag_hours": [3, 6, 12],
+      "archive_start_candidate": "2015-01-01", "archive_start_evidence": "Prompt.md: candidate archive coverage; requires actual metadata verification",
+      "site": {"latitude": null, "longitude": null, "evidence": null},
+      "historical_endpoint_status": "requires_documentation_bound_request_plan", "timezone_evidence": null
+    },
+    "stocknet": {
+      "dataset": "stocknet", "channels": 88, "lookback": 20, "horizons": [1, 3, 5],
+      "repository": "yumoxu/stocknet-dataset", "repository_url": "https://github.com/yumoxu/stocknet-dataset",
+      "allowed_hosts": ["api.github.com", "raw.githubusercontent.com", "github.com"],
+      "documentation_urls": ["https://github.com/yumoxu/stocknet-dataset"],
+      "probe_dates": ["2014-07-15", "2015-06-15", "2015-08-17", "2015-11-16"],
+      "split_boundaries": ["2015-07-01", "2015-10-01", "2016-01-01"],
+      "start_date": "2014-01-01", "target": "log_return_unadjusted_close_candidate",
+      "universe": null, "universe_policy": "freeze_all_discovered_raw_price_entities_sorted_never_drop_for_missing_tweets",
+      "lag_hours": [0, 1], "market": "XNYS",
+      "origin_policy": {"minutes_after_actual_session_close": 30, "status": "experiment_assumption"},
+      "price_adjustment_status": "unknown_requires_source_review"
+    }
+  }
+}

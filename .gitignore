@@ -7418,3 +7418,8 @@ _pydeps/six-1.17.0.dist-info/WHEEL
 /scripts/__pycache__/
 /tests/fidel_ts/__pycache__/
 /.pytest_cache/
+
+# Stage 1.6 local probe payloads and Python caches.
+/artifacts/pivot_sources/
+/scripts/pivot_sources/__pycache__/
+/tests/pivot_sources/__pycache__/

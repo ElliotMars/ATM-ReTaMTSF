@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "source": "nws",
+  "status": "TEMPLATE_NOT_EXECUTABLE_UNTIL_OFFICIAL_DOCUMENTATION_REVIEW",
+  "interface_evidence": {"reviewed": false, "role": "documented_interface", "source_url": "https://mesonet.agron.iastate.edu/api/", "local_file": null, "sha256": null, "quote": null},
+  "requests": [],
+  "response_contract": {
+    "format": "json_records",
+    "records_path": "REPLACE_WITH_DOCUMENTED_ARRAY_PATH_OR_EMPTY_FOR_ROOT_ARRAY",
+    "fields": {"source_record_id": "REPLACE_WITH_DOCUMENTED_PRODUCT_ID_FIELD", "text": "REPLACE_WITH_DOCUMENTED_TEXT_FIELD"},
+    "time_evidence": {}
+  },
+  "instructions": "Use only exact URLs/parameters supported by saved official docs. Each request needs url, kind=records, start/end aware timestamps covering <=2 days, afos_ids, documentation_reference. For a documented plain-text product use format=nws_text, fields={source_record_id:product_id,text:text}, and each request must supply product_id. Independent historical receipt is optional and must never be filled from fetch time. Add reviewed issuance/receipt evidence to time_evidence only after semantic review."
+}

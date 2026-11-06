@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "source": "gfs",
+  "status": "TEMPLATE_NOT_EXECUTABLE_UNTIL_OFFICIAL_DOCUMENTATION_REVIEW",
+  "interface_evidence": {"reviewed": false, "role": "documented_interface", "source_url": "https://gdex.ucar.edu/datasets/d084001/", "local_file": null, "sha256": null, "quote": null},
+  "requests": [],
+  "response_contract": {
+    "format": "json_records", "records_path": "REPLACE_WITH_DOCUMENTED_ARRAY_PATH",
+    "forecast_lead_unit": "hours",
+    "fields": {"source_record_id": "REPLACE_WITH_DOCUMENTED_RECORD_ID_FIELD", "run_time": "REPLACE_WITH_DOCUMENTED_AWARE_INITIALIZATION_FIELD", "forecast_lead_hours": "REPLACE_WITH_DOCUMENTED_HOURLY_LEAD_FIELD"},
+    "time_evidence": {}
+  },
+  "instructions": "First inspect official catalog/authorization/subset docs. Add only documented exact URLs; use kind=catalog/grib_index for raw metadata, file_head with method=HEAD for global file size, or records/metadata with a documented JSON field contract. A single tiny real sample requires kind=small_sample, --allow-small-sample, expected_bytes<=2097152 and reviewed bounded_forecast_sample evidence. No automatic global-file download, registration, or credential logging."
+}

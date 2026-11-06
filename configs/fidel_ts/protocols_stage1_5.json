@@ -1,0 +1,47 @@
+{
+  "schema_version": 1,
+  "protocol_version": "pivot-stage1.5-v1",
+  "split_boundaries": ["2021-01-01T00:00:00", "2022-01-01T00:00:00"],
+  "lookback": 360,
+  "horizons": [24, 168, 336, 720],
+  "hour_seconds": 3600,
+  "boundary_near_seconds": 86400,
+  "n1": {
+    "sort": false,
+    "native_fit_dtype": "float32",
+    "sample_anchor": "first_original_row_in_each_split",
+    "borrow_previous_split_history": false,
+    "scaler": "sklearn.preprocessing.StandardScaler",
+    "sentinels_retained_in_values_and_scaler": true
+  },
+  "n2": {
+    "duplicate_policy": "collapse_exact_equal_exclude_conflict_or_indeterminate",
+    "anchor_validity": "at_least_one_valid_channel",
+    "hour_anchor": "earliest_retained_training_timestamp_with_valid_observation",
+    "scaler_fit_scope": "valid_native_training_observations_after_duplicate_resolution",
+    "continuity": "hourly_steps_and_same_native_contiguous_segment",
+    "borrow_previous_split_history": false,
+    "label_policy": "shared_all_channel_validity_mask_never_fill_labels",
+    "significant_window_retention_warning_below": 0.8,
+    "minimum_eligible_windows_per_split_horizon": 1
+  },
+  "sampling": {
+    "seed": 2025,
+    "reports_per_stratum": 1,
+    "context_hours": 6,
+    "sample_only_source_keys_within_primary_numerical_range": true,
+    "temperature_tolerance_degc": 1.0,
+    "strata": ["split", "year", "season", "location_id", "report_type", "version_id"]
+  },
+  "text_protocols": {
+    "T1": "blocked_not_verifiable_without_historical_issuance_and_version_evidence",
+    "T2": "auxiliary_archived_past_source_key_only",
+    "T3": "retrospective_oracle_risk"
+  },
+  "official_reference_commit": "81043864342e550ed9ffdaa7d9ae6d8420460c6e",
+  "scientific_limitations": [
+    "No assumed timezone or DST repair",
+    "N2 does not undo interpolation already present in the published data",
+    "File variants and source time keys do not establish historical availability"
+  ]
+}
